@@ -1,0 +1,24 @@
+{
+  "name": "cbet-admin",
+  "version": "1.0.0",
+  "description": "cbet admin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sacodersunited/cbet-admin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sacodersunited/cbet-admin/issues"
+  },
+  "homepage": "https://github.com/sacodersunited/cbet-admin#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
