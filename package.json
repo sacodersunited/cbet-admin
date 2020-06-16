@@ -40,6 +40,7 @@
     "react-dropzone": "^11.0.1",
     "react-hook-form": "^5.7.2",
     "react-moment": "^0.9.7",
+    "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.1",
     "suneditor-react": "^2.12.1"
   },
