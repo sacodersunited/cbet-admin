@@ -9,6 +9,25 @@ import {
 } from "react-bootstrap";
 import { signInAuthProvider } from "../app/azure-auth/authProvider";
 import { AzureAD, AuthenticationState } from "react-aad-msal";
+import { Link } from "react-router-dom";
+
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  &.active {
+    background-color: #3c3b54;
+    border-left: 3px solid #a3a0fb;
+  }
+`;
+
+const StyledLoadingBG = styled.div`
+  background-color: #191b28;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 class Dashboard extends React.Component {
   render() {
@@ -20,7 +39,6 @@ class Dashboard extends React.Component {
               return (
                 <Container fluid>
                   <Row className="flex-xl-nowrap">
-                    {/* <SideNav /> */}
                     <Col
                       md={10}
                       className="pb-5"
@@ -77,11 +95,10 @@ class Dashboard extends React.Component {
                 </div>
               );
             case AuthenticationState.InProgress:
-              // TODO: ADD Cbet Styles for unauthenticating
               return (
-                // <StyledLoadingBG>
-                <p style={{ fontSize: "62px" }}>Authenticating...</p>
-                // </StyledLoadingBG>
+                <StyledLoadingBG>
+                  <p style={{ fontSize: "62px" }}>Authenticating...</p>
+                </StyledLoadingBG>
               );
             default:
               return null;
