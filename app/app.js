@@ -1,7 +1,8 @@
-import React from "react";
-import { Route, Switch, Router, Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import history from "./CbetHistory";
+import React from 'react'
+import { Route, Switch, Router, Link } from 'react-router-dom'
+import Dashboard from './Dashboard'
+import history from './CbetHistory'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const FourOhFour = () => (
   <div>
@@ -10,15 +11,15 @@ const FourOhFour = () => (
       Go back to <Link to="/">Dashboard</Link>.
     </p>
   </div>
-);
+)
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isLoadingIndicatorDone: true,
-      selectClassName: "main-content", // used in SideNav hide to change class of content
-    };
+      selectClassName: 'main-content', // used in SideNav hide to change class of content
+    }
   }
 
   render() {
@@ -34,8 +35,8 @@ class App extends React.Component {
           </div>
         </div>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App
