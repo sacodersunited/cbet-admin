@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Switch, Router, Link, NavLink } from 'react-router-dom'
 import {
   Container,
@@ -72,119 +72,138 @@ const SideNav = () => (
 )
 
 const App = () => {
+  const [cbetContent, setCbetContent] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`
+    )
+      .then((response) => response.json()) // parse JSON from request
+      .then((resultData) => {
+        setCbetContent(resultData)
+      })
+  }, [])
+
+  const blogs = cbetContent.filter((post) => post.Category === 3)
+  const events = cbetContent.filter((post) => post.Category === 2)
+  const jobs = cbetContent.filter((post) => post.Category === 1)
   return (
-    <>
-      <AzureAD provider={signInAuthProvider} forceLogin={true}>
-        {({ login, logout, authenticationState, error, accountInfo }) => {
-          switch (authenticationState) {
-            case AuthenticationState.Authenticated:
-              return (
-                <Router history={history}>
-                  <Container fluid>
-                    <Row className="flex-xl-nowrap">
-                      <SideNav />
+    <AzureAD provider={signInAuthProvider} forceLogin={true}>
+      {({ login, logout, authenticationState, error, accountInfo }) => {
+        switch (authenticationState) {
+          case AuthenticationState.Authenticated:
+            return (
+              <Router history={history}>
+                <Container fluid>
+                  <Row className="flex-xl-nowrap">
+                    <SideNav />
 
-                      <Col
-                        md={10}
-                        className="pb-5"
-                        style={{ backgroundColor: '#f0f0f7' }}
-                      >
-                        <Navbar expand="lg" variant="light" bg="light">
-                          <Navbar.Toggle />
-                          <Navbar.Collapse className="justify-content-end">
-                            <NavDropdown
-                              title={`Signed in as ${accountInfo.account.name}`}
-                              id="basic-nav-dropdown"
-                            >
-                              <NavDropdown.Item onClick={logout}>
-                                Logout
-                              </NavDropdown.Item>
-                            </NavDropdown>
-                          </Navbar.Collapse>
-                        </Navbar>
-                        <Container>
-                          <Row className="pt-5 pb-5">
-                            <Col md={3}>Title</Col>
-                            <Col md={2}>
-                              <Link to="/create-edit">
-                                <Button
-                                  variant="outline-primary"
-                                  // onClick={createNewCbetContent}
-                                >
-                                  Create New
-                                </Button>
-                              </Link>
-                            </Col>
-                          </Row>
-                        </Container>
-                        <div id="main-content">
-                          <div className="grid-row grid-gap">
-                            <Switch>
-                              <Route
-                                exact
-                                path="/"
-                                render={(props) => (
-                                  <Dashboard title="Dashboard" />
-                                )}
-                              />
-                              <Route
-                                path="/jobs"
-                                render={(props) => <Jobs title="Jobs" />}
-                              />
-                              <Route
-                                path="/events"
-                                render={(props) => <Events title="Events" />}
-                              />
-                              <Route
-                                path="/blogs"
-                                render={(props) => <Blogs title="Blogs" />}
-                              />
-                              <Route
-                                path="/create-edit"
-                                render={(props) => (
-                                  <CreateEdit title="Create / Edit" />
-                                )}
-                              />
-                              <Route component={FourOhFour} />
-                            </Switch>
-                          </div>
+                    <Col
+                      md={10}
+                      className="pb-5"
+                      style={{ backgroundColor: '#f0f0f7' }}
+                    >
+                      <Navbar expand="lg" variant="light" bg="light">
+                        <Navbar.Toggle />
+                        <Navbar.Collapse className="justify-content-end">
+                          <NavDropdown
+                            title={`Signed in as ${accountInfo.account.name}`}
+                            id="basic-nav-dropdown"
+                          >
+                            <NavDropdown.Item onClick={logout}>
+                              Logout
+                            </NavDropdown.Item>
+                          </NavDropdown>
+                        </Navbar.Collapse>
+                      </Navbar>
+                      <Container>
+                        <Row className="pt-5 pb-5">
+                          <Col md={3}>Title</Col>
+                          <Col md={2}>
+                            <Link to="/create-edit">
+                              <Button variant="outline-primary">
+                                Create New
+                              </Button>
+                            </Link>
+                          </Col>
+                        </Row>
+                      </Container>
+                      <div id="main-content">
+                        <div className="grid-row grid-gap">
+                          <Switch>
+                            <Route
+                              exact
+                              path="/"
+                              render={(props) => (
+                                <Dashboard
+                                  title="Dashboard"
+                                  content={cbetContent}
+                                  {...props}
+                                />
+                              )}
+                            />
+                            <Route
+                              path="/jobs"
+                              render={(props) => (
+                                <Jobs title="Jobs" jobs={jobs} />
+                              )}
+                            />
+                            <Route
+                              path="/events"
+                              render={(props) => (
+                                <Events title="Events" events={events} />
+                              )}
+                            />
+                            <Route
+                              path="/blogs"
+                              render={(props) => (
+                                <Blogs title="Blogs" blogs={blogs} />
+                              )}
+                            />
+                            <Route
+                              path="/create-edit"
+                              render={(props) => (
+                                <CreateEdit title="Create / Edit" {...props} />
+                              )}
+                            />
+                            <Route component={FourOhFour} />
+                          </Switch>
                         </div>
-                      </Col>
-                    </Row>
-                  </Container>
-                </Router>
-              )
+                      </div>
+                    </Col>
+                  </Row>
+                </Container>
+              </Router>
+            )
 
-            case AuthenticationState.Unauthenticated:
-              // TODO: Added a logout button but the AUth client kicks in....may not need this or authenticating state to the app
-              return (
-                <div>
-                  {error && (
-                    <p>
-                      <span>
-                        An error occurred during authentication, please try
-                        again!
-                      </span>
-                    </p>
-                  )}
+          case AuthenticationState.Unauthenticated:
+            // TODO: Added a logout button but the AUth client kicks in....may not need this or authenticating state to the app
+            return (
+              <div>
+                {error && (
                   <p>
-                    <span>Please Login to continue.</span>
-                    <Button onClick={login}>Login</Button>
+                    <span>
+                      An error occurred during authentication, please try again!
+                    </span>
                   </p>
-                </div>
-              )
-            case AuthenticationState.InProgress:
-              return (
-                <StyledLoadingBG>
-                  <p style={{ fontSize: '62px' }}>Authenticating...</p>
-                </StyledLoadingBG>
-              )
-            default:
-              return null
-          }
-        }}
-      </AzureAD>
-    </>
+                )}
+                <p>
+                  <span>Please Login to continue.</span>
+                  <Button onClick={login}>Login</Button>
+                </p>
+              </div>
+            )
+          case AuthenticationState.InProgress:
+            return (
+              <StyledLoadingBG>
+                <p style={{ fontSize: '62px' }}>Authenticating...</p>
+              </StyledLoadingBG>
+            )
+          default:
+            return null
+        }
+      }}
+    </AzureAD>
   )
 }
 
