@@ -1,31 +1,31 @@
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const Dotenv = require("dotenv-webpack")
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
-  entry: "./app/index.js",
+  entry: './app/index.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
   },
   module: {
     rules: [
-      { test: /\.(js)$/, use: "babel-loader" },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.(js)$/, use: 'babel-loader' },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(png|jpg|gif|mp3|ico|svg)$/,
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {},
       },
     ],
   },
-  mode: "development",
+  mode: 'production',
   node: {
-    fs: "empty",
+    fs: 'empty',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "app/index.html",
+      template: 'app/index.html',
     }),
     new Dotenv(),
   ],
