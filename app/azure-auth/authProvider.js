@@ -1,11 +1,10 @@
-
 import { MsalAuthProvider, LoginType } from "react-aad-msal"
 import "regenerator-runtime"
 
 const tenant = "cbettenant.onmicrosoft.com"
 const signInPolicy = "B2C_1_CbetAdminSignUpv1"
 const applicationID = process.env.CBET_AZURE_APPID
-const reactRedirectUri = "https://epic-beaver-ac3d99.netlify.app/"
+const reactRedirectUri = "http://localhost:8080/"
 const tenantSubdomain = tenant.split(".")[0]
 
 const instance = `https://${tenantSubdomain}.b2clogin.com/tfp/`
@@ -20,7 +19,7 @@ const signInConfig = {
     validateAuthority: false,
   },
   cache: {
-    cacheLocation: 'sessionStorage',
+    cacheLocation: "sessionStorage",
     storeAuthStateInCookie: true,
   },
 }
@@ -28,14 +27,14 @@ const signInConfig = {
 // Authentication Parameters
 const authenticationParameters = {
   scopes: [
-    'https://graph.microsoft.com/Directory.Read.All',
-    'https://cbettenant.onmicrosoft.com/api-1/user_impersonation',
+    "https://graph.microsoft.com/Directory.Read.All",
+    "https://cbettenant.onmicrosoft.com/api-1/user_impersonation",
   ],
 }
 
 const options = {
   loginType: LoginType.Redirect,
-  tokenRefreshUri: "https://epic-beaver-ac3d99.netlify.app/",
+  tokenRefreshUri: "http://localhost:8080/",
 }
 
 export const signInAuthProvider = new MsalAuthProvider(
