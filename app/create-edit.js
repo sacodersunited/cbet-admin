@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { AzureAD } from 'react-aad-msal'
 import {
   Button,
   Container,
@@ -16,6 +17,7 @@ import { FaCheck, FaSpinner } from 'react-icons/fa'
 import styled from 'styled-components'
 import CbetDropzone from './components/CbetDropzone'
 import CbetDatePicker from './components/CbetDatePicker'
+import { signInAuthProvider } from './azure-auth/authProvider'
 
 const SpinSpinner = styled(FaSpinner)`
   @keyframes spin {
@@ -175,12 +177,12 @@ export default function CreateEdit(props) {
   const [editImageURL, setEditImageURL] = useState('') // link to Blog header image
 
   useEffect(() => {
-    register({ name: 'cbetDropzone' }, { required: true })
+    // register({ name: 'cbetDropzone' }, { required: true })
     register(
       { name: 'publishDate' },
       { required: true, validate: (value) => Date.parse(value) !== isNaN }
     )
-    register({ name: 'htmlContent' }, { required: true })
+    // register({ name: 'htmlContent' }, { required: true })
     setLocation('Unknown')
 
     // Set default dates for each date field
@@ -268,6 +270,7 @@ export default function CreateEdit(props) {
   }
 
   const onSubmit = (data) => {
+    console.log('is submitting')
     if (cbetContentCategory === 0) {
       setSubmitMessage('Select a Cbet Category to save.')
       return
@@ -312,7 +315,7 @@ export default function CreateEdit(props) {
   }
 
   function insertCbetContent(formData) {
-    // console.log("reached insert cbet content api call", formData)
+    console.log('reached insert cbet content api call', formData)
 
     let cbetContent = {}
 
@@ -394,7 +397,7 @@ export default function CreateEdit(props) {
     }
 
     try {
-      // const response = fetch("http://localhost:7071/api/GetCbetContent", myInit)
+      // const response = fetch('http://localhost:7071/api/GetCbetContent', myInit)
       const response = fetch(
         `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
         myInit
@@ -479,6 +482,8 @@ export default function CreateEdit(props) {
       setValue('endDate', newDate)
     } else if (CategorySelected === 3) {
       register({ name: 'htmlContent' }, { required: true })
+      register({ name: 'cbetDropzone' }, { required: true })
+      register({ name: 'htmlContent' }, { required: true })
     }
   }
 
@@ -525,8 +530,8 @@ export default function CreateEdit(props) {
     setCbetDescription('')
   }
 
-  console.log('props', props)
-  console.log('proces.env', process.env.cbetContentCode)
+  console.log('props', props, cbetContentCategory)
+
   return (
     <Container fluid>
       <Row>
@@ -822,13 +827,13 @@ export default function CreateEdit(props) {
               </Button>
             </Form.Group>
 
-            {/* <Button
-                onClick={() => {
-                  console.log("errors", errors)
-                }}
-              >
-                Errors
-              </Button> */}
+            <Button
+              onClick={() => {
+                console.log('errors', errors)
+              }}
+            >
+              Errors
+            </Button>
           </Form.Row>
         </Col>
 
@@ -974,24 +979,24 @@ export default function CreateEdit(props) {
               </Form.Group>
             ) : null}
 
-            {/* <AzureAD provider={signInAuthProvider}>
-                {({ accountInfo }) => {
-                  return (
-                    <Form.Group controlId="User" style={{ paddingTop: "10px" }}>
-                      <Form.Label style={{ fontWeight: "bold" }}>
-                        User Logged in
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="signedInAuthor"
-                        value={accountInfo.account.name}
-                        readonly
-                        ref={register()}
-                      ></Form.Control>
-                    </Form.Group>
-                  )
-                }}
-              </AzureAD> */}
+            <AzureAD provider={signInAuthProvider}>
+              {({ accountInfo }) => {
+                return (
+                  <Form.Group controlId="User" style={{ paddingTop: '10px' }}>
+                    <Form.Label style={{ fontWeight: 'bold' }}>
+                      User Logged in
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="signedInAuthor"
+                      value={accountInfo.account.name}
+                      readonly
+                      ref={register()}
+                    ></Form.Control>
+                  </Form.Group>
+                )
+              }}
+            </AzureAD>
           </Col>
         </Col>
       </Row>
