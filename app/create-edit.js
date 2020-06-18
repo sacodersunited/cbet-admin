@@ -205,11 +205,8 @@ export default function CreateEdit(props) {
     setStartDate(`${month}/${newDay}/${year}`)
     setEndDate(`${month}/${newDay}/${year}`)
 
-    if (
-      props.location.state &&
-      props.location.state.cbetContent !== undefined
-    ) {
-      const cbetContent = props.location.state.cbetContent
+    if (props.history.location.state) {
+      const cbetContent = props.history.location.state
 
       // Blog header url
       setEditImageURL(cbetContent.Thumbnail)
@@ -253,7 +250,7 @@ export default function CreateEdit(props) {
           break
       }
 
-      if (props.location.state.create === true) {
+      if (props.history.location.state.create === true) {
         clearFields()
       }
     }
@@ -682,9 +679,9 @@ export default function CreateEdit(props) {
                     getDate={getPublishDate}
                     defaultDate
                     initialDate={
-                      props.location.state &&
-                      props.location.state.cbetContent !== undefined
-                        ? props.location.state.cbetContent.StartDate
+                      props.history.location.state &&
+                      props.history.location.state.cbetContent !== undefined
+                        ? props.history.location.state.cbetContent.StartDate
                         : null
                     }
                   />
@@ -718,8 +715,8 @@ export default function CreateEdit(props) {
                   upload={uploadThumbnail}
                   complete={thumbnailUpload.length > 0}
                   editImageUrl={
-                    props.location.state &&
-                    props.location.state.cbetContent !== undefined
+                    props.history.location.state &&
+                    props.history.location.state.cbetContent !== undefined
                       ? editImageURL
                       : null
                   }
@@ -793,25 +790,22 @@ export default function CreateEdit(props) {
               <Button
                 size="lg"
                 onClick={() => {
-                  if (
-                    props.location.state &&
-                    props.location.state.cbetContent !== undefined
-                  ) {
-                    switch (props.location.state.cbetContent.Category) {
+                  if (props.history.location.state) {
+                    switch (props.history.location.state.Category) {
                       case 1:
-                        navigate('admin-jobs')
+                        props.history.push('/jobs')
                         break
                       case 2:
-                        navigate('admin-events')
+                        props.history.push('/events')
                         break
                       case 3:
-                        navigate('admin-blog')
+                        props.history.push('/blogs')
                         break
                       default:
-                        navigate('admin')
+                        props.history.push('/')
                     }
                   } else {
-                    navigate('admin')
+                    props.history.push('/')
                   }
                 }}
               >
@@ -902,9 +896,9 @@ export default function CreateEdit(props) {
                     getDate={getStartDate}
                     defaultDate
                     initialDate={
-                      props.location.state &&
-                      props.location.state.cbetContent !== undefined
-                        ? props.location.state.cbetContent.StartDate
+                      props.history.location.state &&
+                      props.history.location.state.cbetContent !== undefined
+                        ? props.history.location.state.cbetContent.StartDate
                         : null
                     }
                   />
@@ -922,9 +916,9 @@ export default function CreateEdit(props) {
                     getDate={getEndDate}
                     defaultDate
                     initialDate={
-                      props.location.state &&
-                      props.location.state.cbetContent !== undefined
-                        ? props.location.state.cbetContent.EndDate
+                      props.history.location.state &&
+                      props.history.location.state.cbetContent !== undefined
+                        ? props.history.location.state.cbetContent.EndDate
                         : null
                     }
                   />
