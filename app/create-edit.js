@@ -679,9 +679,8 @@ export default function CreateEdit(props) {
                     getDate={getPublishDate}
                     defaultDate
                     initialDate={
-                      props.history.location.state &&
-                      props.history.location.state.cbetContent !== undefined
-                        ? props.history.location.state.cbetContent.StartDate
+                      props.history.location.state
+                        ? props.history.location.state.StartDate
                         : null
                     }
                   />
@@ -715,10 +714,7 @@ export default function CreateEdit(props) {
                   upload={uploadThumbnail}
                   complete={thumbnailUpload.length > 0}
                   editImageUrl={
-                    props.history.location.state &&
-                    props.history.location.state.cbetContent !== undefined
-                      ? editImageURL
-                      : null
+                    props.history.location.state ? editImageURL : null
                   }
                 ></CbetDropzone>
                 <Form.Label style={{ color: 'red' }}>
@@ -896,9 +892,8 @@ export default function CreateEdit(props) {
                     getDate={getStartDate}
                     defaultDate
                     initialDate={
-                      props.history.location.state &&
-                      props.history.location.state.cbetContent !== undefined
-                        ? props.history.location.state.cbetContent.StartDate
+                      props.history.location.state
+                        ? props.history.location.state.StartDate
                         : null
                     }
                   />
@@ -916,9 +911,8 @@ export default function CreateEdit(props) {
                     getDate={getEndDate}
                     defaultDate
                     initialDate={
-                      props.history.location.state &&
-                      props.history.location.state.cbetContent !== undefined
-                        ? props.history.location.state.cbetContent.EndDate
+                      props.history.location.state
+                        ? props.history.location.state.EndDate
                         : null
                     }
                   />
