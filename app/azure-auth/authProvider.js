@@ -34,7 +34,8 @@ const authenticationParameters = {
 
 const options = {
   loginType: LoginType.Redirect,
-  tokenRefreshUri: 'http://localhost:8080/',
+  tokenRefreshUri: 'https://epic-beaver-ac3d99.netlify.app/',
+  // tokenRefreshUri: 'http://localhost:8080/',
 }
 
 export const signInAuthProvider = new MsalAuthProvider(
