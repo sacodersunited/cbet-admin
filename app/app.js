@@ -142,7 +142,10 @@ const App = () => {
                               <Route
                                 path="/create-edit"
                                 render={(props) => (
-                                  <CreateEdit title="Create / Edit" />
+                                  <CreateEdit
+                                    title="Create / Edit"
+                                    {...props}
+                                  />
                                 )}
                               />
                               <Route component={FourOhFour} />
