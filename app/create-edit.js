@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import {
   Button,
   Container,
@@ -9,12 +9,13 @@ import {
   ListGroup,
   OverlayTrigger,
   Tooltip,
-} from "react-bootstrap"
-import SunEditor, { buttonList } from "suneditor-react"
-import "suneditor/dist/css/suneditor.min.css"
-import { FaCheck, FaSpinner } from "react-icons/fa"
-import styled from "styled-components"
-import CbetDatePicker from "./components/CbetDropzone"
+} from 'react-bootstrap'
+import SunEditor, { buttonList } from 'suneditor-react'
+import 'suneditor/dist/css/suneditor.min.css'
+import { FaCheck, FaSpinner } from 'react-icons/fa'
+import styled from 'styled-components'
+import CbetDropzone from './components/CbetDropzone'
+import CbetDatePicker from './components/CbetDatePicker'
 
 const SpinSpinner = styled(FaSpinner)`
   @keyframes spin {
@@ -32,101 +33,101 @@ const SpinSpinner = styled(FaSpinner)`
 
 const partnersList = [
   {
-    name: "Accet",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/accet.svg",
+    name: 'Accet',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/accet.svg',
   },
   {
-    name: "Texas Workforce Commission",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/twc-logo.jpg",
+    name: 'Texas Workforce Commission',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/twc-logo.jpg',
   },
   {
-    name: "Texas Higher Education Board",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/TXHigherEd.png",
+    name: 'Texas Higher Education Board',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/TXHigherEd.png',
   },
   {
-    name: "Veteran Owned Business",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/vet-owned.png",
+    name: 'Veteran Owned Business',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/vet-owned.png',
   },
   {
-    name: "MedWrench",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/Medwrench-logo.png",
+    name: 'MedWrench',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Medwrench-logo.png',
   },
   {
-    name: "TechNation",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/TechNation_logo.png",
+    name: 'TechNation',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/TechNation_logo.png',
   },
   {
-    name: "Tuition Financing",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/tfc_logo.png",
+    name: 'Tuition Financing',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/tfc_logo.png',
   },
   {
-    name: "Stephens International Recruiting",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/si-recruiting.png",
+    name: 'Stephens International Recruiting',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/si-recruiting.png',
   },
   {
-    name: "CER Technology",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/cer-logo.png",
+    name: 'CER Technology',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/cer-logo.png',
   },
   {
-    name: "Summit Imaging",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/summit-logo.jpg",
+    name: 'Summit Imaging',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/summit-logo.jpg',
   },
   {
-    name: "New Braunfels Chamber of Commerce",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/NBChambers-logo.png",
+    name: 'New Braunfels Chamber of Commerce',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/NBChambers-logo.png',
   },
   {
-    name: "Catholic Health Initiatives",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/chi-health.jpg",
+    name: 'Catholic Health Initiatives',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/chi-health.jpg',
   },
   {
-    name: "Citizens Medical Center",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/citizens.png",
+    name: 'Citizens Medical Center',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/citizens.png',
   },
   {
-    name: "CYBERTEXAS Foundation",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/logo-cyberTexas.png",
+    name: 'CYBERTEXAS Foundation',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/logo-cyberTexas.png',
   },
   {
-    name: "Charney & Associates Recruiting",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/charney-logo.png",
+    name: 'Charney & Associates Recruiting',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/charney-logo.png',
   },
   {
-    name: "Memorial Hermann",
+    name: 'Memorial Hermann',
     link:
-      "https://cbet.blob.core.windows.net/cbetblobs/memorial-hermann-logo.jpg",
+      'https://cbet.blob.core.windows.net/cbetblobs/memorial-hermann-logo.jpg',
   },
   {
-    name: "Vyaire",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/Vyaire_Medical_Art.jpg",
+    name: 'Vyaire',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Vyaire_Medical_Art.jpg',
   },
   {
-    name: "SouthEastern Community College",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/scc-logo.png",
+    name: 'SouthEastern Community College',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/scc-logo.png',
   },
   {
-    name: "iMed Biomedical",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/iMed-Biomedical.png",
+    name: 'iMed Biomedical',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/iMed-Biomedical.png',
   },
   {
-    name: "MiraCosta College",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/mira-costa-college.png",
+    name: 'MiraCosta College',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/mira-costa-college.png',
   },
   {
-    name: "U.S. Army",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/ArmyLogo.jpg",
+    name: 'U.S. Army',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/ArmyLogo.jpg',
   },
   {
-    name: "Partnership for Youth Success",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/REGISTEREDlogo.jpg",
+    name: 'Partnership for Youth Success',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/REGISTEREDlogo.jpg',
   },
   {
-    name: "Healthcare Technology Management Association of South Carolina",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/HTMA-SC-logo.jpg",
+    name: 'Healthcare Technology Management Association of South Carolina',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/HTMA-SC-logo.jpg',
   },
   {
-    name: "Kentucky Association for Medical Instumentation",
-    link: "https://cbet.blob.core.windows.net/cbetblobs/kami-logo.png",
+    name: 'Kentucky Association for Medical Instumentation',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/kami-logo.png',
   },
 ]
 
@@ -150,37 +151,37 @@ export default function CreateEdit(props) {
     reset,
     unregister,
   } = useForm()
-  const [htmlContent, setHtmlContent] = useState("") // html content for blog post
+  const [htmlContent, setHtmlContent] = useState('') // html content for blog post
   const [cbetContentCategory, setCbetContentCategory] = useState(1) // content Category
   const [thumbnailUpload, setThumbnailUpload] = useState([]) // thumbnail image
-  const [cbetPartner, setCbetPartner] = useState("") // Partner dropdown list
-  const [cbetTitle, setCbetTitle] = useState("") // Title
+  const [cbetPartner, setCbetPartner] = useState('') // Partner dropdown list
+  const [cbetTitle, setCbetTitle] = useState('') // Title
   const [featured, setFeatured] = useState(false) // is Featured?
-  const [status, setStatus] = useState("0") // Status: active/disabled
-  const [publishDate, setPublishDate] = useState("") // publish date
-  const [startDate, setStartDate] = useState("1/1/2020") // Event Start Date
-  const [endDate, setEndDate] = useState("1/1/2021") // Event End Date
-  const [author, setAuthor] = useState("") // Author text box
+  const [status, setStatus] = useState('0') // Status: active/disabled
+  const [publishDate, setPublishDate] = useState('') // publish date
+  const [startDate, setStartDate] = useState('1/1/2020') // Event Start Date
+  const [endDate, setEndDate] = useState('1/1/2021') // Event End Date
+  const [author, setAuthor] = useState('') // Author text box
   const [isSubmitting, setIsSubmitting] = useState(false) // is Submitting form
-  const [location, setLocation] = useState("") // Location text box
-  const [submitMessage, setSubmitMessage] = useState("") // Submit message label
+  const [location, setLocation] = useState('') // Location text box
+  const [submitMessage, setSubmitMessage] = useState('') // Submit message label
   const [isDone, setIsDone] = useState(false) // Done with submission
-  const [link, setLink] = useState("") // url link
-  const [cbetDescription, setCbetDescription] = useState("") // Description textarea
-  const [partnerLink, setPartnerLink] = useState("") // Partner link from array
-  const [initialHtmlContents, setInitialHtmlComments] = useState("") // initial HTML content
+  const [link, setLink] = useState('') // url link
+  const [cbetDescription, setCbetDescription] = useState('') // Description textarea
+  const [partnerLink, setPartnerLink] = useState('') // Partner link from array
+  const [initialHtmlContents, setInitialHtmlComments] = useState('') // initial HTML content
   const [contentID, setContentID] = useState(0) // ID of cbet Content
   // const authContent = useCbetAuth() // key for running azure function
-  const [editImageURL, setEditImageURL] = useState("") // link to Blog header image
+  const [editImageURL, setEditImageURL] = useState('') // link to Blog header image
 
   useEffect(() => {
-    register({ name: "cbetDropzone" }, { required: true })
+    register({ name: 'cbetDropzone' }, { required: true })
     register(
-      { name: "publishDate" },
+      { name: 'publishDate' },
       { required: true, validate: (value) => Date.parse(value) !== isNaN }
     )
-    register({ name: "htmlContent" }, { required: true })
-    setLocation("Unknown")
+    register({ name: 'htmlContent' }, { required: true })
+    setLocation('Unknown')
 
     // Set default dates for each date field
     const dateF = new Date()
@@ -196,8 +197,8 @@ export default function CreateEdit(props) {
     const newDay =
       day.toString().length === 1 ? `0${day.toString()}` : day.toString()
 
-    console.log("date set in useEffect", `${month}/${newDay}/${year}`)
-    setValue("publishDate", `${month}/${newDay}/${year}`)
+    console.log('date set in useEffect', `${month}/${newDay}/${year}`)
+    setValue('publishDate', `${month}/${newDay}/${year}`)
     setPublishDate(`${month}/${newDay}/${year}`)
     setStartDate(`${month}/${newDay}/${year}`)
     setEndDate(`${month}/${newDay}/${year}`)
@@ -210,7 +211,7 @@ export default function CreateEdit(props) {
 
       // Blog header url
       setEditImageURL(cbetContent.Thumbnail)
-      console.log("job,event,blog", cbetContent)
+      console.log('job,event,blog', cbetContent)
       setContentID(cbetContent.Id)
 
       // job = 1, event = 2, blog = 3
@@ -221,30 +222,30 @@ export default function CreateEdit(props) {
           setCbetTitle(cbetContent.Title)
           setCbetDescription(cbetContent.Description)
           setFeatured(cbetContent.Featured)
-          setStatus(cbetContent.Status === true ? "1" : "0")
+          setStatus(cbetContent.Status === true ? '1' : '0')
           setLink(cbetContent.Link)
           setPublishDate(cbetContent.StartDate)
           setCbetPartner(cbetContent.PartnerName)
-          unregister("cbetDropzone")
-          unregister("htmlContent")
+          unregister('cbetDropzone')
+          unregister('htmlContent')
           break
         case 2:
-          unregister("cbetDropzone")
-          unregister("htmlContent")
+          unregister('cbetDropzone')
+          unregister('htmlContent')
           setCbetContentCategory(cbetContent.CbetCategory_Id)
           setCbetTitle(cbetContent.Title)
           setCbetDescription(cbetContent.Description)
           setLink(cbetContent.Link)
-          setStatus(cbetContent.Status === true ? "1" : "0")
+          setStatus(cbetContent.Status === true ? '1' : '0')
           setLocation(cbetContent.Location)
           break
         case 3:
           setCbetContentCategory(cbetContent.CbetCategory_Id)
           setCbetTitle(cbetContent.Title)
-          setStatus(cbetContent.Status === true ? "1" : "0")
+          setStatus(cbetContent.Status === true ? '1' : '0')
           setAuthor(cbetContent.Author)
           setInitialHtmlComments(cbetContent.Description)
-          unregister("cbetDropzone")
+          unregister('cbetDropzone')
           break
         default:
           break
@@ -268,7 +269,7 @@ export default function CreateEdit(props) {
 
   const onSubmit = (data) => {
     if (cbetContentCategory === 0) {
-      setSubmitMessage("Select a Cbet Category to save.")
+      setSubmitMessage('Select a Cbet Category to save.')
       return
     }
 
@@ -279,19 +280,19 @@ export default function CreateEdit(props) {
   function getCategoryName(cbetCategoryNumber) {
     switch (cbetCategoryNumber) {
       case 1:
-        return "Job"
+        return 'Job'
       case 2:
-        return "Event"
+        return 'Event'
       case 3:
-        return "Blog"
+        return 'Blog'
       default:
-        return "Category"
+        return 'Category'
     }
   }
 
   function handleContentChange(content) {
-    console.log("html content is ", content)
-    setValue("htmlContent", content)
+    console.log('html content is ', content)
+    setValue('htmlContent', content)
     setHtmlContent(content)
   }
 
@@ -302,11 +303,11 @@ export default function CreateEdit(props) {
 
   function handleCbetStatusChange(e) {
     e.preventDefault()
-    setStatus(e.target.value === "1" ? "1" : "0")
+    setStatus(e.target.value === '1' ? '1' : '0')
   }
 
   function uploadThumbnail(files) {
-    setValue("cbetDropzone", files)
+    setValue('cbetDropzone', files)
     setThumbnailUpload(files)
   }
 
@@ -325,13 +326,13 @@ export default function CreateEdit(props) {
           PartnerName: cbetPartner, // string
           Author: author, // string
           ContentCreator: formData.signedInAuthor, // string
-          Status: status === "1" ? true : false, // string
+          Status: status === '1' ? true : false, // string
           CbetCategory: cbetContentCategory, // number
           Link: link, // string - Event and Job only
           StartDate: publishDate, // date
           EndDate: publishDate, // date
-          Location: "", // string
-          Tags: "one,two", // string
+          Location: '', // string
+          Tags: 'one,two', // string
           Featured: featured, // bool
         }
         break
@@ -340,17 +341,17 @@ export default function CreateEdit(props) {
           ID: contentID, // number
           ContentTitle: formData.title, // string
           Description: cbetDescription, // string
-          Thumbnail: "",
+          Thumbnail: '',
           PartnerName: cbetPartner, // string
           Author: author, // string
           ContentCreator: formData.signedInAuthor, // string
-          Status: status === "1" ? true : false, // string
+          Status: status === '1' ? true : false, // string
           CbetCategory: cbetContentCategory, // number
           Link: link, // string
           StartDate: startDate, // date
           EndDate: endDate, // date
           Location: formData.location, // string - Event ONLY
-          Tags: "one,two", // string
+          Tags: 'one,two', // string
           Featured: featured, // bool
         }
         break
@@ -359,51 +360,51 @@ export default function CreateEdit(props) {
           ID: contentID, // number
           ContentTitle: formData.title, // string
           Description: htmlContent, // HTML for blog
-          Thumbnail: "",
+          Thumbnail: '',
           PartnerName: cbetPartner, // string
           Author: author, // string
           ContentCreator: formData.signedInAuthor, // string
-          Status: status === "1" ? true : false, // string
+          Status: status === '1' ? true : false, // string
           CbetCategory: cbetContentCategory, // number
           Link: link, // string
           StartDate: publishDate, // date
           EndDate: publishDate, // date
-          Location: "", // string
-          Tags: "one,two", // string
+          Location: '', // string
+          Tags: 'one,two', // string
           Featured: featured, // bool
         }
         break
       default:
-        return "Cbet Category"
+        return 'Cbet Category'
     }
 
-    console.log("payload", cbetContent)
+    console.log('payload', cbetContent)
 
     const payload = new FormData()
     if (thumbnailUpload.length > 0) {
-      payload.append("file", thumbnailUpload[0])
+      payload.append('file', thumbnailUpload[0])
     } else {
-      payload.append("file", null)
+      payload.append('file', null)
     }
-    payload.append("cbetContent", JSON.stringify(cbetContent))
+    payload.append('cbetContent', JSON.stringify(cbetContent))
 
     const myInit = {
-      method: "POST",
+      method: 'POST',
       body: payload,
     }
 
     try {
       // const response = fetch("http://localhost:7071/api/GetCbetContent", myInit)
       const response = fetch(
-        `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${authContent}`,
+        `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
         myInit
       )
 
       if (!response.ok) {
-        console.log("response not OK.")
+        console.log('response not OK.')
       }
 
-      console.log("response is OK")
+      console.log('response is OK')
 
       setTimeout(() => {
         setIsSubmitting(false)
@@ -451,33 +452,33 @@ export default function CreateEdit(props) {
     setCbetContentCategory(CategorySelected)
 
     if (CategorySelected !== 2) {
-      setLocation("Unknown")
+      setLocation('Unknown')
     } else {
-      setLocation("")
+      setLocation('')
     }
 
     if (CategorySelected === 1) {
-      unregister("cbetDropzone")
-      unregister("htmlContent")
-      unregister("startDate")
-      unregister("endDate")
+      unregister('cbetDropzone')
+      unregister('htmlContent')
+      unregister('startDate')
+      unregister('endDate')
       // unregister("")
     } else if (CategorySelected === 2) {
-      unregister("cbetDropzone")
-      unregister("htmlContent")
+      unregister('cbetDropzone')
+      unregister('htmlContent')
       const newDate = getTodaysDate()
       register(
-        { name: "startDate" },
+        { name: 'startDate' },
         { required: true, validate: (value) => Date.parse(value) !== isNaN }
       )
       register(
-        { name: "endDate" },
+        { name: 'endDate' },
         { required: true, validate: (value) => Date.parse(value) !== isNaN }
       )
-      setValue("startDate", newDate)
-      setValue("endDate", newDate)
+      setValue('startDate', newDate)
+      setValue('endDate', newDate)
     } else if (CategorySelected === 3) {
-      register({ name: "htmlContent" }, { required: true })
+      register({ name: 'htmlContent' }, { required: true })
     }
   }
 
@@ -498,33 +499,34 @@ export default function CreateEdit(props) {
   }
 
   function getPublishDate(renderedDate) {
-    setValue("publishDate", renderedDate)
+    setValue('publishDate', renderedDate)
     setPublishDate(renderedDate)
   }
 
   function getStartDate(startDateCbet) {
-    setValue("startDate", startDateCbet)
+    setValue('startDate', startDateCbet)
     setStartDate(startDateCbet)
   }
 
   function getEndDate(endDateCbet) {
-    setValue("endDate", endDateCbet)
+    setValue('endDate', endDateCbet)
     setEndDate(endDateCbet)
   }
 
   function clearFields() {
     reset()
-    setCbetTitle("")
-    setAuthor("")
-    setCbetPartner("0")
-    setHtmlContent("")
-    setLocation("")
+    setCbetTitle('')
+    setAuthor('')
+    setCbetPartner('0')
+    setHtmlContent('')
+    setLocation('')
     setThumbnailUpload([])
-    setLink("")
-    setCbetDescription("")
+    setLink('')
+    setCbetDescription('')
   }
 
-  console.log("props", props)
+  console.log('props', props)
+  console.log('proces.env', process.env.cbetContentCode)
   return (
     <Container fluid>
       <Row>
@@ -534,8 +536,8 @@ export default function CreateEdit(props) {
               <FaCheck color="green" size={22}></FaCheck>
               <span
                 style={{
-                  marginLeft: "5px",
-                  verticalAlign: "bottom",
+                  marginLeft: '5px',
+                  verticalAlign: 'bottom',
                 }}
                 data-testid="uploadfilename"
               >
@@ -544,7 +546,7 @@ export default function CreateEdit(props) {
             </Form.Label>
           ) : null}
           <Form.Group controlId="selectCategory">
-            <Form.Label style={{ fontWeight: "bold" }}>
+            <Form.Label style={{ fontWeight: 'bold' }}>
               {getCategoryName(cbetContentCategory)}
             </Form.Label>
             <Form.Control
@@ -559,13 +561,13 @@ export default function CreateEdit(props) {
               <option value="2">Event</option>
               <option value="3">Blog</option>
             </Form.Control>
-            <Form.Label style={{ color: "red" }}>
-              {errors.category && "* Cbet Category is required"}
+            <Form.Label style={{ color: 'red' }}>
+              {errors.category && '* Cbet Category is required'}
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="TitleHere">
             <Form.Label
-              style={{ fontWeight: "bold" }}
+              style={{ fontWeight: 'bold' }}
             >{`Title of ${getCategoryName(cbetContentCategory)}`}</Form.Label>
             <Form.Control
               type="text"
@@ -574,12 +576,12 @@ export default function CreateEdit(props) {
               value={cbetTitle}
               ref={register({ required: true })}
             ></Form.Control>
-            <Form.Label style={{ color: "red" }}>
-              {errors.title && "* Title is required"}
+            <Form.Label style={{ color: 'red' }}>
+              {errors.title && '* Title is required'}
             </Form.Label>
           </Form.Group>
           <Form.Group controlId="status">
-            <Form.Label style={{ fontWeight: "bold" }}>Status</Form.Label>
+            <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
             <Form.Control
               as="select"
               name="status"
@@ -590,21 +592,21 @@ export default function CreateEdit(props) {
               <option value="1">Active</option>
               <option value="0">Disabled</option>
             </Form.Control>
-            <Form.Label style={{ color: "red" }}>
-              {errors.category && "* Cbet Category is required"}
+            <Form.Label style={{ color: 'red' }}>
+              {errors.category && '* Cbet Category is required'}
             </Form.Label>
           </Form.Group>
 
           {/* Job only */}
           {cbetContentCategory === 1 ? (
             <Form.Group controlId="Partners">
-              <Form.Label style={{ fontWeight: "bold" }}>Partners</Form.Label>
+              <Form.Label style={{ fontWeight: 'bold' }}>Partners</Form.Label>
               <Form.Control
                 as="select"
                 name="partner"
                 ref={register({
                   required: true,
-                  validate: (value) => value !== "0",
+                  validate: (value) => value !== '0',
                 })}
                 value={cbetPartner}
                 onChange={handleCbetPartnerChange}
@@ -614,8 +616,8 @@ export default function CreateEdit(props) {
                   return <option value={partner.name}>{partner.name}</option>
                 })}
               </Form.Control>
-              <Form.Label style={{ color: "red" }}>
-                {errors.author && "* Partner is required"}
+              <Form.Label style={{ color: 'red' }}>
+                {errors.author && '* Partner is required'}
               </Form.Label>
             </Form.Group>
           ) : null}
@@ -624,7 +626,7 @@ export default function CreateEdit(props) {
           {cbetContentCategory !== 3 ? (
             <React.Fragment>
               <Form.Group>
-                <Form.Label style={{ fontWeight: "bold" }}>Link</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>Link</Form.Label>
                 <OverlayTrigger
                   overlay={
                     <Tooltip id="tooltip-disabled">
@@ -643,8 +645,8 @@ export default function CreateEdit(props) {
                     })}
                   ></Form.Control>
                 </OverlayTrigger>
-                <Form.Label style={{ color: "red" }}>
-                  {errors.link && "* Valid Link is required"}
+                <Form.Label style={{ color: 'red' }}>
+                  {errors.link && '* Valid Link is required'}
                 </Form.Label>
               </Form.Group>
             </React.Fragment>
@@ -653,7 +655,7 @@ export default function CreateEdit(props) {
           {cbetContentCategory !== 2 ? (
             <React.Fragment>
               <Form.Group controlId="AuthorHere">
-                <Form.Label style={{ fontWeight: "bold" }}>Author</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold' }}>Author</Form.Label>
                 <Form.Control
                   type="text"
                   name="author"
@@ -661,14 +663,14 @@ export default function CreateEdit(props) {
                   onChange={handleAuthor}
                   ref={register({ required: true })}
                 ></Form.Control>
-                <Form.Label style={{ color: "red" }}>
-                  {errors.author && "* Author is required"}
+                <Form.Label style={{ color: 'red' }}>
+                  {errors.author && '* Author is required'}
                 </Form.Label>
               </Form.Group>
 
               <Form.Row>
                 <Form.Group>
-                  <Form.Label style={{ fontWeight: "bold" }}>
+                  <Form.Label style={{ fontWeight: 'bold' }}>
                     Publish Date
                   </Form.Label>
                   <CbetDatePicker
@@ -681,8 +683,8 @@ export default function CreateEdit(props) {
                         : null
                     }
                   />
-                  <Form.Label style={{ color: "red" }}>
-                    {errors.publishDate && "* Valid Date is required"}
+                  <Form.Label style={{ color: 'red' }}>
+                    {errors.publishDate && '* Valid Date is required'}
                   </Form.Label>
                 </Form.Group>
               </Form.Row>
@@ -692,21 +694,21 @@ export default function CreateEdit(props) {
           {/* Blog Header image */}
           {cbetContentCategory === 3 ? (
             <React.Fragment>
-              <Form.Label style={{ fontWeight: "bold" }}>
-                Blog Header image{" "}
+              <Form.Label style={{ fontWeight: 'bold' }}>
+                Blog Header image{' '}
                 <Button
                   onClick={() => {
                     setThumbnailUpload([])
-                    setEditImageURL("")
+                    setEditImageURL('')
                   }}
                 >
                   Clear
                 </Button>
               </Form.Label>
-              <Form.Label style={{ color: "red", marginLeft: "5px" }}>
+              <Form.Label style={{ color: 'red', marginLeft: '5px' }}>
                 * Requires an image at 1440 x 300 pixels
               </Form.Label>
-              <Form.Group style={{ display: "flex", justifyContent: "center" }}>
+              <Form.Group style={{ display: 'flex', justifyContent: 'center' }}>
                 <CbetDropzone
                   upload={uploadThumbnail}
                   complete={thumbnailUpload.length > 0}
@@ -717,17 +719,17 @@ export default function CreateEdit(props) {
                       : null
                   }
                 ></CbetDropzone>
-                <Form.Label style={{ color: "red" }}>
-                  {errors.cbetDropzone && "* Blog Header image is required"}
+                <Form.Label style={{ color: 'red' }}>
+                  {errors.cbetDropzone && '* Blog Header image is required'}
                 </Form.Label>
               </Form.Group>
 
               {thumbnailUpload ? (
                 <ul
                   style={{
-                    listStyleType: "none",
-                    paddingLeft: "0px",
-                    marginTop: "0px",
+                    listStyleType: 'none',
+                    paddingLeft: '0px',
+                    marginTop: '0px',
                   }}
                 >
                   {thumbnailUpload.map((file) => (
@@ -735,14 +737,14 @@ export default function CreateEdit(props) {
                       <FaCheck
                         color="green"
                         size={22}
-                        style={{ marginTop: "10px" }}
+                        style={{ marginTop: '10px' }}
                       />
                       <span
                         style={{
-                          color: "#005ea2",
-                          marginTop: "10px",
-                          marginLeft: "5px",
-                          verticalAlign: "bottom",
+                          color: '#005ea2',
+                          marginTop: '10px',
+                          marginLeft: '5px',
+                          verticalAlign: 'bottom',
                         }}
                         data-testid="uploadfilename"
                       >
@@ -757,14 +759,14 @@ export default function CreateEdit(props) {
 
           {/* Submit Message here */}
           {submitMessage.length > 1 ? (
-            <Form.Label style={{ color: "red" }}>{submitMessage}</Form.Label>
+            <Form.Label style={{ color: 'red' }}>{submitMessage}</Form.Label>
           ) : null}
 
           {/* Save Cancel buttons */}
           <Form.Row>
             <Form.Group
               as={Col}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <React.Fragment>
                 <Button size="lg" onClick={handleSubmit(onSubmit)}>
@@ -775,13 +777,13 @@ export default function CreateEdit(props) {
               {isSubmitting === true ? (
                 <SpinSpinner
                   data-testid="spinner"
-                  style={{ leftMargin: "5px" }}
+                  style={{ leftMargin: '5px' }}
                 />
               ) : null}
             </Form.Group>
             <Form.Group
               as={Col}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <Button
                 size="lg"
@@ -792,19 +794,19 @@ export default function CreateEdit(props) {
                   ) {
                     switch (props.location.state.cbetContent.Category) {
                       case 1:
-                        navigate("admin-jobs")
+                        navigate('admin-jobs')
                         break
                       case 2:
-                        navigate("admin-events")
+                        navigate('admin-events')
                         break
                       case 3:
-                        navigate("admin-blog")
+                        navigate('admin-blog')
                         break
                       default:
-                        navigate("admin")
+                        navigate('admin')
                     }
                   } else {
-                    navigate("admin")
+                    navigate('admin')
                   }
                 }}
               >
@@ -813,7 +815,7 @@ export default function CreateEdit(props) {
             </Form.Group>
             <Form.Group
               as={Col}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <Button variant="outline-primary" onClick={clearFields}>
                 Clear
@@ -835,7 +837,7 @@ export default function CreateEdit(props) {
           {cbetContentCategory === 1 ? (
             <React.Fragment>
               <Form.Group>
-                <Form.Label style={{ fontWeight: "bold" }}>
+                <Form.Label style={{ fontWeight: 'bold' }}>
                   Is Featured
                 </Form.Label>
                 <ListGroup horizontal>
@@ -847,7 +849,7 @@ export default function CreateEdit(props) {
                     }}
                     active={featured === true}
                     href="link1"
-                    style={{ width: "77px" }}
+                    style={{ width: '77px' }}
                   >
                     On
                   </ListGroup.Item>
@@ -859,14 +861,14 @@ export default function CreateEdit(props) {
                     onClick={() => {
                       setFeatured(false)
                     }}
-                    style={{ width: "77px" }}
+                    style={{ width: '77px' }}
                   >
                     Off
                   </ListGroup.Item>
                 </ListGroup>
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ fontWeight: "bold" }}>
+                <Form.Label style={{ fontWeight: 'bold' }}>
                   Job Description
                 </Form.Label>
                 <Form.Control
@@ -877,8 +879,8 @@ export default function CreateEdit(props) {
                   onChange={handleCbetDescription}
                   ref={register({ required: true })}
                 ></Form.Control>
-                <Form.Label style={{ color: "red", marginLeft: "5px" }}>
-                  {errors.description && "* Description is required"}
+                <Form.Label style={{ color: 'red', marginLeft: '5px' }}>
+                  {errors.description && '* Description is required'}
                 </Form.Label>
               </Form.Group>
             </React.Fragment>
@@ -888,7 +890,7 @@ export default function CreateEdit(props) {
             <Col>
               <Form.Row>
                 <Form.Group controlId="event dates">
-                  <Form.Label style={{ fontWeight: "bold" }}>
+                  <Form.Label style={{ fontWeight: 'bold' }}>
                     Start Date
                   </Form.Label>
                   <CbetDatePicker
@@ -901,14 +903,14 @@ export default function CreateEdit(props) {
                         : null
                     }
                   />
-                  <Form.Label style={{ color: "red", marginLeft: "5px" }}>
-                    {errors.startDate && "* Start date must be a valid date."}
+                  <Form.Label style={{ color: 'red', marginLeft: '5px' }}>
+                    {errors.startDate && '* Start date must be a valid date.'}
                   </Form.Label>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
                 <Form.Group>
-                  <Form.Label style={{ fontWeight: "bold" }}>
+                  <Form.Label style={{ fontWeight: 'bold' }}>
                     End Date
                   </Form.Label>
                   <CbetDatePicker
@@ -921,8 +923,8 @@ export default function CreateEdit(props) {
                         : null
                     }
                   />
-                  <Form.Label style={{ color: "red", marginLeft: "5px" }}>
-                    {errors.endDate && "* End date must be a valid date."}
+                  <Form.Label style={{ color: 'red', marginLeft: '5px' }}>
+                    {errors.endDate && '* End date must be a valid date.'}
                   </Form.Label>
                 </Form.Group>
               </Form.Row>
@@ -931,18 +933,18 @@ export default function CreateEdit(props) {
           {/* Blog only */}
           {cbetContentCategory === 3 ? (
             <Form.Group>
-              <Form.Label style={{ fontWeight: "bold" }}>
+              <Form.Label style={{ fontWeight: 'bold' }}>
                 Blog content
               </Form.Label>
 
-              <Form.Label style={{ color: "red", marginLeft: "5px" }}>
-                {errors.htmlContent && "* Content is required"}
+              <Form.Label style={{ color: 'red', marginLeft: '5px' }}>
+                {errors.htmlContent && '* Content is required'}
               </Form.Label>
               <SunEditor
                 onChange={handleContentChange}
                 setContents={initialHtmlContents}
                 setOptions={{
-                  height: "auto",
+                  height: 'auto',
                   minHeight: 400,
                   buttonList: buttonList.complex,
                 }}
@@ -953,9 +955,9 @@ export default function CreateEdit(props) {
           {/* Event */}
           <Col md={8}>
             {cbetContentCategory === 2 ? (
-              <Form.Group controlId="Location" style={{ paddingTop: "10px" }}>
+              <Form.Group controlId="Location" style={{ paddingTop: '10px' }}>
                 <Form.Label
-                  style={{ fontWeight: "bold" }}
+                  style={{ fontWeight: 'bold' }}
                 >{`Location of ${getCategoryName(
                   cbetContentCategory
                 )}`}</Form.Label>
@@ -966,8 +968,8 @@ export default function CreateEdit(props) {
                   onChange={handleLocation}
                   ref={register({ required: true })}
                 ></Form.Control>
-                <Form.Label style={{ color: "red" }}>
-                  {errors.location && "* Location is required"}
+                <Form.Label style={{ color: 'red' }}>
+                  {errors.location && '* Location is required'}
                 </Form.Label>
               </Form.Group>
             ) : null}
