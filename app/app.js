@@ -30,7 +30,7 @@ const FourOhFour = () => (
   <div>
     <h1>Page not found</h1>
     <p>
-      Go back to <Link to="/">Dashboard</Link>.
+      Go back to <Link to="https://cbet.edu/admin/">Dashboard</Link>.
     </p>
   </div>
 )
@@ -133,7 +133,7 @@ const App = () => {
                           <Switch>
                             <Route
                               exact
-                              path="/"
+                              path="https://cbet.edu/admin/"
                               render={(props) => (
                                 <Dashboard
                                   title="Dashboard"
@@ -143,25 +143,25 @@ const App = () => {
                               )}
                             />
                             <Route
-                              path="/jobs"
+                              path="https://cbet.edu/admin/jobs"
                               render={(props) => (
                                 <Jobs title="Jobs" jobs={jobs} />
                               )}
                             />
                             <Route
-                              path="/events"
+                              path="https://cbet.edu/admin/events"
                               render={(props) => (
                                 <Events title="Events" events={events} />
                               )}
                             />
                             <Route
-                              path="/blogs"
+                              path="https://cbet.edu/admin/blogs"
                               render={(props) => (
                                 <Blogs title="Blogs" blogs={blogs} />
                               )}
                             />
                             <Route
-                              path="/create-edit"
+                              path="https://cbet.edu/admin/create-edit"
                               render={(props) => (
                                 <CreateEdit title="Create / Edit" {...props} />
                               )}

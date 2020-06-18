@@ -789,19 +789,19 @@ export default function CreateEdit(props) {
                   if (props.history.location.state) {
                     switch (props.history.location.state.Category) {
                       case 1:
-                        props.history.push('/jobs')
+                        props.history.push('https://cbet.edu/admin/jobs')
                         break
                       case 2:
-                        props.history.push('/events')
+                        props.history.push('https://cbet.edu/admin/events')
                         break
                       case 3:
-                        props.history.push('/blogs')
+                        props.history.push('https://cbet.edu/admin/blogs')
                         break
                       default:
-                        props.history.push('/')
+                        props.history.push('https://cbet.edu/admin/')
                     }
                   } else {
-                    props.history.push('/')
+                    props.history.push('https://cbet.edu/admin/')
                   }
                 }}
               >
