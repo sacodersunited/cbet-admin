@@ -1,12 +1,12 @@
-import React, { useCallback, useState, useEffect } from "react"
-import { Image } from "react-bootstrap"
-import { useDropzone } from "react-dropzone"
-import dropzone from "./images/DropZone.png"
-import dropzone_Active from "./images/DropZone Active.png"
-import dropzone_Complete from "./images/DropZone Complete.png"
-import dropzone_Uploading from "./images/DropZone Uploading.png"
-import styled from "styled-components"
-import { FaSpinner } from "react-icons/fa/index"
+import React, { useCallback, useState, useEffect } from 'react'
+import { Image } from 'react-bootstrap'
+import { useDropzone } from 'react-dropzone'
+import dropzone from './images/DropZone.png'
+import dropzone_Active from './images/DropZone Active.png'
+import dropzone_Complete from './images/DropZone Complete.png'
+import dropzone_Uploading from './images/DropZone Uploading.png'
+import styled from 'styled-components'
+import { FaSpinner } from 'react-icons/fa/index'
 
 const SpinSpinner = styled(FaSpinner)`
   @keyframes spin {
@@ -35,7 +35,7 @@ export default function CbetDropzone(props) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   useEffect(() => {
-    console.log("cbetDropzone initial props", props)
+    console.log('cbetDropzone initial props', props)
   }, [])
 
   function clickUpload(e) {
@@ -44,7 +44,7 @@ export default function CbetDropzone(props) {
   }
 
   return (
-    <div {...getRootProps()} style={{ width: "404px" }}>
+    <div {...getRootProps()} style={{ width: '404px' }}>
       <input {...getInputProps()} />
 
       {isDragActive ? (
@@ -53,7 +53,7 @@ export default function CbetDropzone(props) {
 
       {isUploading ? (
         <React.Fragment>
-          <SpinSpinner style={{ marginTop: "5px" }} data-testid="spinner" />
+          <SpinSpinner style={{ marginTop: '5px' }} data-testid="spinner" />
           <Image src={dropzone_Uploading} onClick={clickUpload} fluid />
         </React.Fragment>
       ) : null}
@@ -62,7 +62,7 @@ export default function CbetDropzone(props) {
 
       {isUploading === false &&
       props.complete === false &&
-      props.editImageUrl === "" ? (
+      (props.editImageUrl === '') | (props.editImageUrl === null) ? (
         <Image src={dropzone} onClick={clickUpload} fluid />
       ) : (
         <Image src={props.editImageUrl} fluid />
