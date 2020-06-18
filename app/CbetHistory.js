@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
   // For staging: "/civiliancorpsadmindev"
   // For Prod: "/civcorpsadmin"
   console.log('Production basename is https://cbet.edu/admin')
-  baseNameProd = 'https://cbet.edu/admin'
+  baseNameProd = '/admin'
 }
 
 const customHistory = createBrowserHistory({
