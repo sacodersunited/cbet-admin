@@ -118,7 +118,6 @@ const App = () => {
                       </Navbar>
                       <Container>
                         <Row className="pt-5 pb-5">
-                          <Col md={3}>Title</Col>
                           <Col md={2}>
                             <Link to="/create-edit">
                               <Button variant="outline-primary">
