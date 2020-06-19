@@ -414,15 +414,15 @@ export default function CreateEdit(props) {
       }, 3000)
 
       // Adds Build hook fetch if any Blog is updated/created
-      // if (cbetContentCategory === 3) {
-      //   const buildHookInit = {
-      //     method: "POST",
-      //   }
-      //   fetch(
-      //     "https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc",
-      //     buildHookInit
-      //   )
-      // }
+      if (cbetContentCategory === 3) {
+        const buildHookInit = {
+          method: 'POST',
+        }
+        fetch(
+          'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
+          buildHookInit
+        )
+      }
     } catch (e) {
       console.log(`catch error: ${e}`)
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { FaPen, FaTimes } from 'react-icons/fa'
