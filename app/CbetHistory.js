@@ -8,8 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   // For staging: "/civiliancorpsadmindev"
   // For Prod: "/civcorpsadmin"
-  console.log('Production basename is https://cbet.edu/admin')
-  baseNameProd = '/admin'
+  console.log('Production basename')
+  baseNameProd = ''
 }
 
 const customHistory = createBrowserHistory({

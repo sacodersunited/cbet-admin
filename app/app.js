@@ -29,7 +29,7 @@ const FourOhFour = () => (
   <div>
     <h1>Page not found</h1>
     <p>
-      Go back to <Link to="https://cbet.edu/admin/">Dashboard</Link>.
+      Go back to <Link to="/">Dashboard</Link>.
     </p>
   </div>
 )
@@ -120,7 +120,7 @@ const App = () => {
                 <Switch>
                   <Route
                     exact
-                    path="https://cbet.edu/admin/"
+                    path="/"
                     render={(props) => (
                       <Dashboard
                         title="Dashboard"
@@ -130,21 +130,21 @@ const App = () => {
                     )}
                   />
                   <Route
-                    path="https://cbet.edu/admin/jobs"
+                    path="/jobs"
                     render={(props) => <Jobs title="Jobs" jobs={jobs} />}
                   />
                   <Route
-                    path="https://cbet.edu/admin/events"
+                    path="/events"
                     render={(props) => (
                       <Events title="Events" events={events} />
                     )}
                   />
                   <Route
-                    path="https://cbet.edu/admin/blogs"
+                    path="/blogs"
                     render={(props) => <Blogs title="Blogs" blogs={blogs} />}
                   />
                   <Route
-                    path="https://cbet.edu/admin/create-edit"
+                    path="/create-edit"
                     render={(props) => (
                       <CreateEdit title="Create / Edit" {...props} />
                     )}

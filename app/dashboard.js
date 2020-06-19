@@ -20,7 +20,7 @@ export default function Dashboard(props) {
     e.preventDefault()
     console.log('clicked edit', cbetContent, props)
 
-    props.history.push('https://cbet.edu/admin/create-edit', cbetContent)
+    props.history.push('/create-edit', cbetContent)
   }
 
   const activeBlogs = props.content.filter(
