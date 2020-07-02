@@ -4,7 +4,7 @@ import 'regenerator-runtime'
 const tenant = 'cbettenant.onmicrosoft.com'
 const signInPolicy = 'B2C_1_CbetAdminSignUpv1'
 const applicationID = process.env.CBET_AZURE_APPID
-const reactRedirectUri = 'https://epic-admin-ac3d99.netlify.app/'
+const reactRedirectUri = 'https://epic-admin-ac3d99.netlify.app/' //'https://epic-admin-ac3d99.netlify.app/'
 const tenantSubdomain = tenant.split('.')[0]
 
 const instance = `https://${tenantSubdomain}.b2clogin.com/tfp/`

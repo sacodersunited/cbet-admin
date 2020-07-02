@@ -11,6 +11,14 @@ const MetaSection = styled.div`
   margin-bottom: 10px;
 `
 export default function Jobs(props) {
+  
+  function handleEdit(e, cbetContent) {
+    e.preventDefault()
+    console.log('clicked edit', cbetContent, props)
+
+    props.history.push('/create-edit', cbetContent)
+  }
+
   return (
     <Container>
       <Row>

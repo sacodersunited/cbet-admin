@@ -119,8 +119,7 @@ const App = () => {
                       </Navbar>
                       <Container>
                         <Row className="pt-5 pb-5">
-                          <Col md={3}>Title</Col>
-                          <Col md={2}>
+                          <Col md={5}>
                             <Link to="/create-edit">
                               <Button variant="outline-primary">
                                 Create New
@@ -146,19 +145,23 @@ const App = () => {
                             <Route
                               path="/jobs"
                               render={(props) => (
-                                <Jobs title="Jobs" jobs={jobs} />
+                                <Jobs title="Jobs" jobs={jobs} {...props} />
                               )}
                             />
                             <Route
                               path="/events"
                               render={(props) => (
-                                <Events title="Events" events={events} />
+                                <Events
+                                  title="Events"
+                                  events={events}
+                                  {...props}
+                                />
                               )}
                             />
                             <Route
                               path="/blogs"
                               render={(props) => (
-                                <Blogs title="Blogs" blogs={blogs} />
+                                <Blogs title="Blogs" blogs={blogs} {...props} />
                               )}
                             />
                             <Route

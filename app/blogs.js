@@ -12,6 +12,12 @@ const MetaSection = styled.div`
 `
 
 export default function Blogs(props) {
+  function handleEdit(e, cbetContent) {
+    e.preventDefault()
+    console.log('clicked edit', cbetContent, props)
+
+    props.history.push('/create-edit', cbetContent)
+  }
   return (
     <Container>
       <Row>
