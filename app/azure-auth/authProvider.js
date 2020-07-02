@@ -1,11 +1,11 @@
-import { MsalAuthProvider, LoginType } from "react-aad-msal"
-import "regenerator-runtime"
+import { MsalAuthProvider, LoginType } from 'react-aad-msal'
+import 'regenerator-runtime'
 
-const tenant = "cbettenant.onmicrosoft.com"
-const signInPolicy = "B2C_1_CbetAdminSignUpv1"
+const tenant = 'cbettenant.onmicrosoft.com'
+const signInPolicy = 'B2C_1_CbetAdminSignUpv1'
 const applicationID = process.env.CBET_AZURE_APPID
-const reactRedirectUri = "http://localhost:8080/"
-const tenantSubdomain = tenant.split(".")[0]
+const reactRedirectUri = 'https://epic-admin-ac3d99.netlify.app/' //'https://epic-admin-ac3d99.netlify.app/'
+const tenantSubdomain = tenant.split('.')[0]
 
 const instance = `https://${tenantSubdomain}.b2clogin.com/tfp/`
 const signInAuthority = `${instance}${tenant}/${signInPolicy}`
@@ -19,7 +19,7 @@ const signInConfig = {
     validateAuthority: false,
   },
   cache: {
-    cacheLocation: "sessionStorage",
+    cacheLocation: 'sessionStorage',
     storeAuthStateInCookie: true,
   },
 }
@@ -27,14 +27,14 @@ const signInConfig = {
 // Authentication Parameters
 const authenticationParameters = {
   scopes: [
-    "https://graph.microsoft.com/Directory.Read.All",
-    "https://cbettenant.onmicrosoft.com/api-1/user_impersonation",
+    'https://graph.microsoft.com/Directory.Read.All',
+    'https://cbettenant.onmicrosoft.com/api-1/user_impersonation',
   ],
 }
 
 const options = {
   loginType: LoginType.Redirect,
-  tokenRefreshUri: "http://localhost:8080/",
+  tokenRefreshUri: 'https://epic-admin-ac3d99.netlify.app/',
 }
 
 export const signInAuthProvider = new MsalAuthProvider(

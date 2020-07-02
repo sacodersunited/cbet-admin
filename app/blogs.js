@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Navbar,
-  Nav,
-  NavDropdown,
-  Badge,
-} from 'react-bootstrap'
+import { Container, Row, Col, Card, Badge } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { FaPen, FaTimes } from 'react-icons/fa'
 import { showActive, showDate, showAuthor } from './utils/admin'
@@ -22,7 +12,12 @@ const MetaSection = styled.div`
 `
 
 export default function Blogs(props) {
-  console.log('blogs', props)
+  function handleEdit(e, cbetContent) {
+    e.preventDefault()
+    console.log('clicked edit', cbetContent, props)
+
+    props.history.push('/create-edit', cbetContent)
+  }
   return (
     <Container>
       <Row>

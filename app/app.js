@@ -87,6 +87,7 @@ const App = () => {
   const blogs = cbetContent.filter((post) => post.Category === 3)
   const events = cbetContent.filter((post) => post.Category === 2)
   const jobs = cbetContent.filter((post) => post.Category === 1)
+
   return (
     <AzureAD provider={signInAuthProvider} forceLogin={true}>
       {({ login, logout, authenticationState, error, accountInfo }) => {
@@ -118,7 +119,7 @@ const App = () => {
                       </Navbar>
                       <Container>
                         <Row className="pt-5 pb-5">
-                          <Col md={2}>
+                          <Col md={5}>
                             <Link to="/create-edit">
                               <Button variant="outline-primary">
                                 Create New
@@ -144,19 +145,23 @@ const App = () => {
                             <Route
                               path="/jobs"
                               render={(props) => (
-                                <Jobs title="Jobs" jobs={jobs} />
+                                <Jobs title="Jobs" jobs={jobs} {...props} />
                               )}
                             />
                             <Route
                               path="/events"
                               render={(props) => (
-                                <Events title="Events" events={events} />
+                                <Events
+                                  title="Events"
+                                  events={events}
+                                  {...props}
+                                />
                               )}
                             />
                             <Route
                               path="/blogs"
                               render={(props) => (
-                                <Blogs title="Blogs" blogs={blogs} />
+                                <Blogs title="Blogs" blogs={blogs} {...props} />
                               )}
                             />
                             <Route
@@ -174,7 +179,6 @@ const App = () => {
                 </Container>
               </Router>
             )
-
           case AuthenticationState.Unauthenticated:
             // TODO: Added a logout button but the AUth client kicks in....may not need this or authenticating state to the app
             return (

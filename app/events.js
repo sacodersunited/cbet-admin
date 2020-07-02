@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { FaPen, FaTimes } from 'react-icons/fa'
@@ -11,6 +11,12 @@ const MetaSection = styled.div`
   margin-bottom: 10px;
 `
 export default function Events(props) {
+  function handleEdit(e, cbetContent) {
+    e.preventDefault()
+    console.log('clicked edit', cbetContent, props)
+
+    props.history.push('/create-edit', cbetContent)
+  }
   return (
     <Container>
       <Row>
