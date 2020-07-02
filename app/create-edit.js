@@ -12,7 +12,7 @@ import {
   Tooltip,
 } from 'react-bootstrap'
 import SunEditor, { buttonList } from 'suneditor-react'
-import '../node_modules/suneditor/dist/css/suneditor.min.css'
+import '../app/css/suneditor.min.css'
 import { FaCheck, FaSpinner } from 'react-icons/fa'
 import styled from 'styled-components'
 import CbetDropzone from './components/CbetDropzone'
