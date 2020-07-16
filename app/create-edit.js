@@ -131,6 +131,10 @@ const partnersList = [
     name: 'Kentucky Association for Medical Instumentation',
     link: 'https://cbet.blob.core.windows.net/cbetblobs/kami-logo.png',
   },
+  {
+    name: 'HTM Associate',
+    link: 'https://cbet.blog.core.windows.net/cbetblogs/hiHtmLogo.png',
+  },
 ]
 
 partnersList.sort((a, b) => {
@@ -139,10 +143,6 @@ partnersList.sort((a, b) => {
   }
   return 1
 })
-
-const linkValidator = new RegExp(
-  /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/
-)
 
 export default function CreateEdit(props) {
   const {
@@ -642,10 +642,6 @@ export default function CreateEdit(props) {
                     name="link"
                     value={link}
                     onChange={handleLink}
-                    ref={register({
-                      required: true,
-                      validate: (value) => linkValidator.test(value) === true,
-                    })}
                   ></Form.Control>
                 </OverlayTrigger>
                 <Form.Label style={{ color: 'red' }}>
