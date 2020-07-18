@@ -19,11 +19,11 @@ export default function Blogs(props) {
     props.history.push('/create-edit', cbetContent)
   }
 
-  function deleteBlog(e, blogID) {
-    console.log('reached delete blog', blogID, e)
+  function deleteBlog(e, post) {
+    console.log('reached delete blog', post, e)
 
     let cbetContent = {
-      ID: blogID, // number
+      ID: post.ID, // number
       ContentTitle: '', // string
       Description: '', // HTML for blog
       Thumbnail: '',
@@ -31,7 +31,7 @@ export default function Blogs(props) {
       Author: '', // string
       ContentCreator: '', // string
       Status: false, // string
-      CbetCategory: '', // number
+      CbetCategory: post.CbetCategory_Id, // number
       Link: '', // string
       StartDate: '', // date
       EndDate: '', // date
