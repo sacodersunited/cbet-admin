@@ -23,7 +23,7 @@ export default function Blogs(props) {
     console.log('reached delete blog', post, e)
 
     let cbetContent = {
-      ID: post.ID, // number
+      ID: post.Id, // number
       ContentTitle: '', // string
       Description: '', // HTML for blog
       Thumbnail: '',
