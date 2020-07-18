@@ -44,6 +44,7 @@ export default function Blogs(props) {
     console.log('payload', cbetContent)
 
     const payload = new FormData()
+    payload.append('file', null)
     payload.append('cbetContent', JSON.stringify(cbetContent))
 
     const myInit = {
