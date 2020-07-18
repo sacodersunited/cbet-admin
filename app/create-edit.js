@@ -334,6 +334,7 @@ export default function CreateEdit(props) {
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
+          Delete: false,
         }
         break
       case 2: // Event
@@ -353,6 +354,7 @@ export default function CreateEdit(props) {
           Location: formData.location, // string - Event ONLY
           Tags: 'one,two', // string
           Featured: featured, // bool
+          Delete: false,
         }
         break
       case 3: // Blog
@@ -372,6 +374,7 @@ export default function CreateEdit(props) {
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
+          Delete: false,
         }
         break
       default:

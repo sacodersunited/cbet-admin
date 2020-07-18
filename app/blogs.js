@@ -18,6 +18,62 @@ export default function Blogs(props) {
 
     props.history.push('/create-edit', cbetContent)
   }
+
+  function deleteBlog(e, blogID) {
+    console.log('reached delete blog', blogID, e)
+
+    let cbetContent = {
+      ID: blogID, // number
+      ContentTitle: '', // string
+      Description: '', // HTML for blog
+      Thumbnail: '',
+      PartnerName: '', // string
+      Author: '', // string
+      ContentCreator: '', // string
+      Status: false, // string
+      CbetCategory: '', // number
+      Link: '', // string
+      StartDate: '', // date
+      EndDate: '', // date
+      Location: '', // string
+      Tags: 'one,two', // string
+      Featured: false, // bool
+      Delete: false,
+    }
+
+    console.log('payload', cbetContent)
+
+    const payload = new FormData()
+    payload.append('cbetContent', JSON.stringify(cbetContent))
+
+    const myInit = {
+      method: 'POST',
+      body: payload,
+    }
+
+    try {
+      // const response = fetch('http://localhost:7071/api/GetCbetContent', myInit)
+      const response = fetch(
+        `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
+        myInit
+      )
+
+      // Adds Build hook fetch if any Blog is updated/created
+      const buildHookInit = {
+        method: 'POST',
+      }
+      fetch(
+        'https://api.netlify.com/build_hooks/5cf3ea316717989ed33fb674',
+        // cbet.edu hook -> 'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
+        buildHookInit
+      )
+
+      props.history.push('/blogs')
+    } catch (e) {
+      console.log(`catch error: ${e}`)
+    }
+  }
+
   return (
     <Container>
       <Row>
@@ -31,7 +87,11 @@ export default function Blogs(props) {
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => handleEdit(e, post)}
                   />
-                  <FaTimes style={{ cursor: 'pointer' }} className="ml-2" />
+                  <FaTimes
+                    style={{ cursor: 'pointer' }}
+                    className="ml-2"
+                    onClick={(e) => deleteBlog(e, post)}
+                  />
                 </div>
               </Card.Header>
               <Card.Body style={{ minHeight: '200px' }}>
