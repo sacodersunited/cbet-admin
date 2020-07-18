@@ -38,7 +38,7 @@ export default function Blogs(props) {
       Location: '', // string
       Tags: 'one,two', // string
       Featured: false, // bool
-      Delete: false,
+      Delete: true,
     }
 
     console.log('payload', cbetContent)
@@ -57,6 +57,8 @@ export default function Blogs(props) {
         `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
         myInit
       )
+
+      console.log('Delete Response', response)
 
       // Adds Build hook fetch if any Blog is updated/created
       const buildHookInit = {
