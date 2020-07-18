@@ -24,7 +24,7 @@ export default function Blogs(props) {
 
     let cbetContent = {
       ID: post.Id, // number
-      ContentTitle: '', // string
+      ContentTitle: post.Title, // string
       Description: '', // HTML for blog
       Thumbnail: '',
       PartnerName: '', // string
@@ -33,8 +33,8 @@ export default function Blogs(props) {
       Status: false, // string
       CbetCategory: post.CbetCategory_Id, // number
       Link: '', // string
-      StartDate: '', // date
-      EndDate: '', // date
+      StartDate: post.StartDate, // date
+      EndDate: post.EndDate, // date
       Location: '', // string
       Tags: 'one,two', // string
       Featured: false, // bool
