@@ -68,12 +68,16 @@ export default function Blogs(props) {
         myInit
       )
 
-      console.log('Delete Response', response)
-
-      console.log('status', response.status)
       response.then((resp) => {
         console.log('inside resp', resp)
+        if (resp.status === 200) {
+          alert(`Blog ${post.Title} was deleted.`)
+          props.history.push('/blogs')
+        } else {
+          alert(`There was an error deleting the blog. Status code:${resp.status}`)
+        }
       })
+
       // Adds Build hook fetch if any Blog is updated/created
       // const buildHookInit = {
       //   method: 'POST',
@@ -83,11 +87,6 @@ export default function Blogs(props) {
       //   // cbet.edu hook -> 'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
       //   buildHookInit
       // )
-
-      if (response.ok) {
-        alert(`Blog ${post.Title} was deleted.`)
-        props.history.push('/blogs')
-      }
     } catch (e) {
       console.log(`catch error: ${e}`)
     }
