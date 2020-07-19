@@ -70,6 +70,10 @@ export default function Blogs(props) {
 
       console.log('Delete Response', response)
 
+      console.log('status', response.status)
+      response.then((resp) => {
+        console.log('inside resp', resp)
+      })
       // Adds Build hook fetch if any Blog is updated/created
       // const buildHookInit = {
       //   method: 'POST',
