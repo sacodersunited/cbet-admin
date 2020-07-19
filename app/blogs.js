@@ -72,9 +72,11 @@ export default function Blogs(props) {
         console.log('inside resp', resp)
         if (resp.status === 200) {
           alert(`Blog ${post.Title} was deleted.`)
-          props.history.push('/blogs')
+          props.history.push('/')
         } else {
-          alert(`There was an error deleting the blog. Status code:${resp.status}`)
+          alert(
+            `There was an error deleting the blog. Status code:${resp.status}`
+          )
         }
       })
 
