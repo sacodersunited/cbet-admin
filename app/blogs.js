@@ -19,8 +19,17 @@ export default function Blogs(props) {
     props.history.push('/create-edit', cbetContent)
   }
 
-  function deleteBlog(e, post) {
-    console.log('reached delete blog', post, e)
+  function handleDelete(e, post) {
+    const shouldDelete = confirm(
+      `Do you really want to delete this Blog titled ${post.Title} ?`
+    )
+    if (shouldDelete) {
+      deleteBlog(post)
+    }
+  }
+
+  function deleteBlog(post) {
+    // console.log('reached delete blog', post, e)
 
     let cbetContent = {
       ID: post.Id, // number
@@ -71,7 +80,10 @@ export default function Blogs(props) {
       //   buildHookInit
       // )
 
-      props.history.push('/blogs')
+      if (response.ok) {
+        alert(`Blog ${post.Title} was deleted.`)
+        props.history.push('/blogs')
+      }
     } catch (e) {
       console.log(`catch error: ${e}`)
     }
@@ -93,7 +105,7 @@ export default function Blogs(props) {
                   <FaTimes
                     style={{ cursor: 'pointer' }}
                     className="ml-2"
-                    onClick={(e) => deleteBlog(e, post)}
+                    onClick={(e) => handleDelete(e, post)}
                   />
                 </div>
               </Card.Header>
