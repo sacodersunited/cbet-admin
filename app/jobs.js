@@ -29,6 +29,68 @@ export default function Jobs(props) {
     props.history.push('/create-edit', cbetContent)
   }
 
+  function handleDelete(e, post) {
+    const shouldDelete = confirm(
+      `Do you really want to delete this Job titled ${post.Title} ?`
+    )
+    if (shouldDelete) {
+      deleteJob(post)
+    }
+  }
+
+  function deleteJob(post) {
+    let cbetJob = {
+      ID: post.Id, // number
+      ContentTitle: post.Title, // string
+      Description: '', // HTML for blog
+      Thumbnail: '',
+      PartnerName: '', // string
+      Author: '', // string
+      ContentCreator: '', // string
+      Status: false, // string
+      CbetCategory: post.CbetCategory_Id, // number
+      Link: '', // string
+      StartDate: post.StartDate, // date
+      EndDate: post.EndDate, // date
+      Location: '', // string
+      Tags: 'one,two', // string
+      Featured: false, // bool
+      Delete: true,
+    }
+
+    console.log('payload', cbetJob)
+
+    const payload = new FormData()
+    payload.append('file', null)
+    payload.append('cbetJob', JSON.stringify(cbetJob))
+
+    const myInit = {
+      method: 'POST',
+      body: payload,
+    }
+
+    try {
+      // const response = fetch('http://localhost:7071/api/GetCbetContent', myInit)
+      const response = fetch(
+        `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
+        myInit
+      )
+
+      response.then((resp) => {
+        if (resp.status === 200) {
+          alert(`Job ${post.Title} was deleted.`)
+          props.history.push('/jobs')
+        } else {
+          alert(
+            `There was an error deleting the Job. Status code:${resp.status}`
+          )
+        }
+      })
+    } catch (e) {
+      console.log(`catch error: ${e}`)
+    }
+  }
+
   const jobs = cbetContent.filter((post) => post.Category === 1)
 
   return (
@@ -44,7 +106,11 @@ export default function Jobs(props) {
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => handleEdit(e, job)}
                   />
-                  <FaTimes style={{ cursor: 'pointer' }} className="ml-2" />
+                  <FaTimes
+                    style={{ cursor: 'pointer' }}
+                    className="ml-2"
+                    onClick={(e) => handleDelete(e, job)}
+                  />
                 </div>
               </Card.Header>
               <Card.Body style={{ minHeight: '200px' }}>

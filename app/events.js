@@ -29,6 +29,68 @@ export default function Events(props) {
     props.history.push('/create-edit', cbetContent)
   }
 
+  function handleDelete(e, post) {
+    const shouldDelete = confirm(
+      `Do you really want to delete this Event titled ${post.Title} ?`
+    )
+    if (shouldDelete) {
+      deleteEvent(post)
+    }
+  }
+
+  function deleteEvent(post) {
+    let cbetEvent = {
+      ID: post.Id, // number
+      ContentTitle: post.Title, // string
+      Description: '', // HTML for blog
+      Thumbnail: '',
+      PartnerName: '', // string
+      Author: '', // string
+      ContentCreator: '', // string
+      Status: false, // string
+      CbetCategory: post.CbetCategory_Id, // number
+      Link: '', // string
+      StartDate: post.StartDate, // date
+      EndDate: post.EndDate, // date
+      Location: '', // string
+      Tags: 'one,two', // string
+      Featured: false, // bool
+      Delete: true,
+    }
+
+    console.log('payload', cbetEvent)
+
+    const payload = new FormData()
+    payload.append('file', null)
+    payload.append('cbetEvent', JSON.stringify(cbetEvent))
+
+    const myInit = {
+      method: 'POST',
+      body: payload,
+    }
+
+    try {
+      // const response = fetch('http://localhost:7071/api/GetCbetContent', myInit)
+      const response = fetch(
+        `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`,
+        myInit
+      )
+
+      response.then((resp) => {
+        if (resp.status === 200) {
+          alert(`Event ${post.Title} was deleted.`)
+          props.history.push('/events')
+        } else {
+          alert(
+            `There was an error deleting the Event. Status code:${resp.status}`
+          )
+        }
+      })
+    } catch (e) {
+      console.log(`catch error: ${e}`)
+    }
+  }
+
   const events = cbetContent.filter((post) => post.Category === 2)
 
   return (
@@ -44,7 +106,11 @@ export default function Events(props) {
                     style={{ cursor: 'pointer' }}
                     onClick={(e) => handleEdit(e, event)}
                   />
-                  <FaTimes style={{ cursor: 'pointer' }} className="ml-2" />
+                  <FaTimes
+                    style={{ cursor: 'pointer' }}
+                    className="ml-2"
+                    onClick={(e) => handleDelete(e, job)}
+                  />
                 </div>
               </Card.Header>
               <Card.Body style={{ minHeight: '200px' }}>
