@@ -12,7 +12,7 @@
   "scripts": {
     "create": "webpack",
     "start": "webpack-dev-server --open",
-    "build": "node ./create-env.js && webpack --config ./webpack.production.config.js && echo '/* /index.html 200' | cat >app/_redirects",
+    "build": "node ./create-env.js && webpack --config ./webpack.production.config.js && echo '/* /index.html 200' | cat > _redirects",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
