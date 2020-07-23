@@ -137,7 +137,7 @@ const partnersList = [
   },
   {
     name: 'Other - uses CBET Logo',
-    link: 'https://cbet.blob.core.windows.net/cbetblobs/CbetLogo.png',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/CBET-02.jpg',
   },
 ]
 
@@ -328,7 +328,7 @@ export default function CreateEdit(props) {
           CbetCategory: cbetContentCategory, // number
           Link: link, // string - Event and Job only
           StartDate: publishDate, // date
-          EndDate: publishDate, // date
+          EndDate: '12/31/2020', // date
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
@@ -368,7 +368,7 @@ export default function CreateEdit(props) {
           CbetCategory: cbetContentCategory, // number
           Link: link, // string
           StartDate: publishDate, // date
-          EndDate: publishDate, // date
+          EndDate: '12/31/2020', // date
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
