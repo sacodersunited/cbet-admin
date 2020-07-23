@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Col,
   Container,
@@ -14,6 +14,18 @@ import Moment from 'react-moment'
 import { FaRegCalendar, FaToolbox, FaNewspaper } from 'react-icons/fa'
 
 export default function Dashboard(props) {
+  const [cbetContent, setCbetContent] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`
+    )
+      .then((response) => response.json()) // parse JSON from request
+      .then((resultData) => {
+        setCbetContent(resultData)
+      })
+  }, [])
+
   function handleEdit(e, cbetContent) {
     e.preventDefault()
     console.log('clicked edit', cbetContent, props)
@@ -21,13 +33,13 @@ export default function Dashboard(props) {
     props.history.push('/create-edit', cbetContent)
   }
 
-  const activeBlogs = props.content.filter(
+  const activeBlogs = cbetContent.filter(
     (post) => post.Category === 3 && post.Status === true
   )
-  const activeEvents = props.content.filter(
+  const activeEvents = cbetContent.filter(
     (post) => post.Category === 2 && post.Status === true
   )
-  const activeJobs = props.content.filter(
+  const activeJobs = cbetContent.filter(
     (post) => post.Category === 1 && post.Status === true
   )
 

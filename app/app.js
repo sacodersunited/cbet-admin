@@ -84,10 +84,6 @@ const App = () => {
       })
   }, [])
 
-  const blogs = cbetContent.filter((post) => post.Category === 3)
-  const events = cbetContent.filter((post) => post.Category === 2)
-  const jobs = cbetContent.filter((post) => post.Category === 1)
-
   return (
     <AzureAD provider={signInAuthProvider} forceLogin={true}>
       {({ login, logout, authenticationState, error, accountInfo }) => {
@@ -135,27 +131,19 @@ const App = () => {
                               exact
                               path="/"
                               render={(props) => (
-                                <Dashboard
-                                  title="Dashboard"
-                                  content={cbetContent}
-                                  {...props}
-                                />
+                                <Dashboard title="Dashboard" {...props} />
                               )}
                             />
                             <Route
                               path="/jobs"
                               render={(props) => (
-                                <Jobs title="Jobs" jobs={jobs} {...props} />
+                                <Jobs title="Jobs" {...props} />
                               )}
                             />
                             <Route
                               path="/events"
                               render={(props) => (
-                                <Events
-                                  title="Events"
-                                  events={events}
-                                  {...props}
-                                />
+                                <Events title="Events" {...props} />
                               )}
                             />
                             <Route

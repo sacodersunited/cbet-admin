@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { FaPen, FaTimes } from 'react-icons/fa'
@@ -11,16 +11,31 @@ const MetaSection = styled.div`
   margin-bottom: 10px;
 `
 export default function Events(props) {
+  const [cbetContent, setCbetContent] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`
+    )
+      .then((response) => response.json()) // parse JSON from request
+      .then((resultData) => {
+        setCbetContent(resultData)
+      })
+  }, [])
+
   function handleEdit(e, cbetContent) {
     e.preventDefault()
     console.log('clicked edit', cbetContent, props)
 
     props.history.push('/create-edit', cbetContent)
   }
+
+  const events = cbetContent.filter((post) => post.Category === 2)
+
   return (
     <Container>
       <Row>
-        {props.events.map((event) => (
+        {events.map((event) => (
           <Col md={4}>
             <Card key={event.Id} className="mb-3">
               <Card.Header className="d-flex justify-content-between">

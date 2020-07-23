@@ -41,8 +41,6 @@ export default function Blogs(props) {
   }
 
   function deleteBlog(post) {
-    // console.log('reached delete blog', post, e)
-
     let cbetContent = {
       ID: post.Id, // number
       ContentTitle: post.Title, // string
@@ -84,7 +82,7 @@ export default function Blogs(props) {
         console.log('inside resp', resp)
         if (resp.status === 200) {
           alert(`Blog ${post.Title} was deleted.`)
-          props.history.push('/')
+          props.history.push('/blogs')
         } else {
           alert(
             `There was an error deleting the blog. Status code:${resp.status}`
