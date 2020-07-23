@@ -135,6 +135,10 @@ const partnersList = [
     name: 'HTM Associate',
     link: 'https://cbet.blog.core.windows.net/cbetblogs/hiHtmLogo.png',
   },
+  {
+    name: 'Other - uses CBET Logo',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/CbetLogo.png',
+  },
 ]
 
 partnersList.sort((a, b) => {
