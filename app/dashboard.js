@@ -28,7 +28,6 @@ export default function Dashboard(props) {
 
   function handleEdit(e, cbetContent) {
     e.preventDefault()
-    console.log('clicked edit', cbetContent, props)
 
     props.history.push('/create-edit', cbetContent)
   }

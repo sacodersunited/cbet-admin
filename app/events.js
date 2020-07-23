@@ -25,7 +25,6 @@ export default function Events(props) {
 
   function handleEdit(e, cbetContent) {
     e.preventDefault()
-    console.log('clicked edit', cbetContent, props)
 
     props.history.push('/create-edit', cbetContent)
   }

@@ -199,7 +199,6 @@ export default function CreateEdit(props) {
     const newDay =
       day.toString().length === 1 ? `0${day.toString()}` : day.toString()
 
-    console.log('date set in useEffect', `${month}/${newDay}/${year}`)
     setValue('publishDate', `${month}/${newDay}/${year}`)
     setPublishDate(`${month}/${newDay}/${year}`)
     setStartDate(`${month}/${newDay}/${year}`)
@@ -210,7 +209,6 @@ export default function CreateEdit(props) {
 
       // Blog header url
       setEditImageURL(cbetContent.Thumbnail)
-      console.log('job,event,blog', cbetContent)
       setContentID(cbetContent.Id)
 
       // job = 1, event = 2, blog = 3
@@ -267,7 +265,6 @@ export default function CreateEdit(props) {
   }
 
   const onSubmit = (data) => {
-    console.log('is submitting')
     if (cbetContentCategory === 0) {
       setSubmitMessage('Select a Cbet Category to save.')
       return
@@ -291,7 +288,6 @@ export default function CreateEdit(props) {
   }
 
   function handleContentChange(content) {
-    console.log('html content is ', content)
     setValue('htmlContent', content)
     setHtmlContent(content)
   }
@@ -312,8 +308,6 @@ export default function CreateEdit(props) {
   }
 
   function insertCbetContent(formData) {
-    console.log('reached insert cbet content api call', formData)
-
     let cbetContent = {}
 
     switch (cbetContentCategory) {
@@ -403,18 +397,20 @@ export default function CreateEdit(props) {
         myInit
       )
 
-      if (!response.ok) {
-        console.log('response not OK.')
-      }
-
-      console.log('response is OK')
-
-      setTimeout(() => {
-        setIsSubmitting(false)
-        clearFields()
-        setIsDone(true)
-        ClearDone()
-      }, 3000)
+      response.then((resp) => {
+        if (resp.status === 200) {
+          setTimeout(() => {
+            setIsSubmitting(false)
+            clearFields()
+            setIsDone(true)
+            ClearDone()
+          }, 3000)
+        } else {
+          alert(
+            `There was an error adding new cbet content. Status code:${resp.status}`
+          )
+        }
+      })
 
       // Adds Build hook fetch if any Blog is updated/created
       if (cbetContentCategory === 3) {
@@ -428,7 +424,7 @@ export default function CreateEdit(props) {
         )
       }
     } catch (e) {
-      console.log(`catch error: ${e}`)
+      console.log(`catch error on create/edit: ${e}`)
     }
   }
 

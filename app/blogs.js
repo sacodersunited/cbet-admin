@@ -26,7 +26,6 @@ export default function Blogs(props) {
 
   function handleEdit(e, cbetContent) {
     e.preventDefault()
-    console.log('clicked edit', cbetContent, props)
 
     props.history.push('/create-edit', cbetContent)
   }
@@ -79,7 +78,6 @@ export default function Blogs(props) {
       )
 
       response.then((resp) => {
-        console.log('inside resp', resp)
         if (resp.status === 200) {
           alert(`Blog ${post.Title} was deleted.`)
           props.history.push('/blogs')

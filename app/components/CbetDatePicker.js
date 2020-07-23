@@ -13,11 +13,7 @@ export default function CbetDatePicker(props) {
   const [daysLength, setDaysLength] = useState(0) // number of days selected
 
   useEffect(() => {
-    console.log('props date picker', props)
     if (props.defaultDate && props.initialDate === undefined) {
-      console.log(
-        'date picker has DefaultDate prop selected and undefined initial Date'
-      )
       const dateF = new Date()
       const day = dateF.getDate()
       const monthIndex = dateF.getMonth()
@@ -31,13 +27,7 @@ export default function CbetDatePicker(props) {
         `${'0' + month.toString()}/${day.toString()}/${year.toString()}`
       )
     } else if (props.initialDate !== null) {
-      console.log(
-        'initial date is there!!!',
-        props.initialDate,
-        formatDate(props.initialDate, true)
-      )
       let newInitialDate = new Date(formatDate(props.initialDate, false, true))
-      // console.log("newInitialDate", newInitialDate)
       let newDay = newInitialDate.getDate().toString()
       if (newDay.length === 1) {
         newDay = `0${newDay}`
@@ -64,11 +54,6 @@ export default function CbetDatePicker(props) {
       setDaysLength(calculateDays(addMonth, newDate))
       props.getDate(`${addMonth}/${addDay}/${newDate}`)
     }
-    console.log('date from cbet date picker', `${newDate}/${addDay}/${addYear}`)
-    console.log(
-      'date from cbet date picker',
-      `${addMonth}/${addDay}/${addYear}`
-    )
   }
 
   return (

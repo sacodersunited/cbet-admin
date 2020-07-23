@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Image } from 'react-bootstrap'
 import { useDropzone } from 'react-dropzone'
 import dropzone from './images/DropZone.png'
@@ -33,10 +33,6 @@ export default function CbetDropzone(props) {
     props.upload(acceptedFiles, setIsUploading(false))
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
-  useEffect(() => {
-    console.log('cbetDropzone initial props', props)
-  }, [])
 
   function clickUpload(e) {
     e.preventDefault()
