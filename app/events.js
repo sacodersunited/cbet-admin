@@ -79,7 +79,7 @@ export default function Events(props) {
       response.then((resp) => {
         if (resp.status === 200) {
           alert(`Event ${post.Title} was deleted.`)
-          props.history.push('/events')
+          window.location.reload(false)
         } else {
           alert(
             `There was an error deleting the Event. Status code:${resp.status}`
