@@ -161,7 +161,7 @@ const App = () => {
                             <Route
                               path="/blogs"
                               render={(props) => (
-                                <Blogs title="Blogs" blogs={blogs} {...props} />
+                                <Blogs title="Blogs" {...props} />
                               )}
                             />
                             <Route

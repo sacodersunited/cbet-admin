@@ -12,6 +12,18 @@ const MetaSection = styled.div`
 `
 
 export default function Blogs(props) {
+  const [cbetContent, setCbetContent] = useState([])
+
+  useEffect(() => {
+    fetch(
+      `https://cbetdata.azurewebsites.net/api/GetCbetContent?code=${process.env.cbetContentCode}`
+    )
+      .then((response) => response.json()) // parse JSON from request
+      .then((resultData) => {
+        setCbetContent(resultData)
+      })
+  }, [])
+
   function handleEdit(e, cbetContent) {
     e.preventDefault()
     console.log('clicked edit', cbetContent, props)
@@ -94,10 +106,12 @@ export default function Blogs(props) {
     }
   }
 
+  const blogs = cbetContent.filter((post) => post.Category === 3)
+
   return (
     <Container>
       <Row>
-        {props.blogs.map((post) => (
+        {blogs.map((post) => (
           <Col md={4}>
             <Card key={post.Id} className="mb-3">
               <Card.Header className="d-flex justify-content-between">
