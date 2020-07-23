@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { FaPen, FaTimes } from 'react-icons/fa'
@@ -79,7 +80,8 @@ export default function Jobs(props) {
       response.then((resp) => {
         if (resp.status === 200) {
           alert(`Job ${post.Title} was deleted.`)
-          props.history.push('/jobs')
+          const history = useHistory()
+          history.go()
         } else {
           alert(
             `There was an error deleting the Job. Status code:${resp.status}`
