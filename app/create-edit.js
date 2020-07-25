@@ -139,6 +139,18 @@ const partnersList = [
     name: 'Other - uses CBET Logo',
     link: 'https://cbet.blob.core.windows.net/cbetblobs/CBET-02.jpg',
   },
+  {
+    name: 'TrimedX',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Trimedx_Logo.png',
+  },
+  {
+    name: 'Agiliti',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Agiliti_Logo.png',
+  },
+  {
+    name: 'InterMed',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/InterMed_Logo.jpg',
+  },
 ]
 
 partnersList.sort((a, b) => {
