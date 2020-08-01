@@ -133,7 +133,7 @@ const partnersList = [
   },
   {
     name: 'HTM Associate',
-    link: 'https://cbet.blog.core.windows.net/cbetblogs/hiHtmLogo.png',
+    link: 'https://cbet.blog.core.windows.net/cbetblobs/hiHtmLogo.png',
   },
   {
     name: 'Other - uses CBET Logo',
@@ -434,8 +434,7 @@ export default function CreateEdit(props) {
           method: 'POST',
         }
         fetch(
-          'https://api.netlify.com/build_hooks/5cf3ea316717989ed33fb674',
-          // cbet.edu hook -> 'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
+          'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
           buildHookInit
         )
       }
