@@ -88,15 +88,14 @@ export default function Blogs(props) {
         }
       })
 
-      // Adds Build hook fetch if any Blog is updated/created
-      // const buildHookInit = {
-      //   method: 'POST',
-      // }
-      // fetch(
-      //   'https://api.netlify.com/build_hooks/5cf3ea316717989ed33fb674',
-      //   // cbet.edu hook -> 'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
-      //   buildHookInit
-      // )
+      //Adds Build hook fetch if any Blog is deleted
+      const buildHookInit = {
+        method: 'POST',
+      }
+      fetch(
+        'https://api.netlify.com/build_hooks/5ecebf26051d938410c0d4fc',
+        buildHookInit
+      )
     } catch (e) {
       console.log(`catch error: ${e}`)
     }
