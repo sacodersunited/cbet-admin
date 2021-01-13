@@ -151,6 +151,10 @@ const partnersList = [
     name: 'InterMed',
     link: 'https://cbet.blob.core.windows.net/cbetblobs/InterMed_Logo.jpg',
   },
+  {
+    name: 'Cheyenne Regional healthcare',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/CheyenneRegionalLogo.png',
+  }
 ]
 
 partnersList.sort((a, b) => {
