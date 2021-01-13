@@ -344,7 +344,7 @@ export default function CreateEdit(props) {
           CbetCategory: cbetContentCategory, // number
           Link: link, // string - Event and Job only
           StartDate: publishDate, // date
-          EndDate: '12/31/2020', // date
+          EndDate: '12/31/2021', // date
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
@@ -384,7 +384,7 @@ export default function CreateEdit(props) {
           CbetCategory: cbetContentCategory, // number
           Link: link, // string
           StartDate: publishDate, // date
-          EndDate: '12/31/2020', // date
+          EndDate: '12/31/2021', // date
           Location: '', // string
           Tags: 'one,two', // string
           Featured: featured, // bool
