@@ -154,6 +154,10 @@ const partnersList = [
   {
     name: 'Cheyenne Regional healthcare',
     link: 'https://cbet.blob.core.windows.net/cbetblobs/CheyenneRegionalLogo.png',
+  },
+  {
+    name: 'The McConnell Group',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/tmg.png'
   }
 ]
 
