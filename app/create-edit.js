@@ -244,6 +244,7 @@ export default function CreateEdit(props) {
           setCbetDescription(cbetContent.Description)
           setFeatured(cbetContent.Featured)
           setStatus(cbetContent.Status === true ? '1' : '0')
+          setPartnerLink(cbetContent.Thumbnail);
           setLink(cbetContent.Link)
           setPublishDate(cbetContent.StartDate)
           setCbetPartner(cbetContent.PartnerName)
