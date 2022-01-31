@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
 
 module.exports = {
@@ -21,7 +22,9 @@ module.exports = {
   },
   mode: 'production',
   node: {
-    fs: 'empty',
+    global: true,
+    __filename: true,
+    __dirname: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
