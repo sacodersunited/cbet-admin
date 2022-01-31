@@ -158,6 +158,10 @@ const partnersList = [
   {
     name: 'The McConnell Group',
     link: 'https://cbet.blob.core.windows.net/cbetblobs/tmg.png'
+  },
+  {
+    name: 'Canon',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Canon Logo.jpg'
   }
 ]
 
@@ -334,7 +338,7 @@ export default function CreateEdit(props) {
 
   function insertCbetContent(formData) {
     let cbetContent = {}
-
+console
     switch (cbetContentCategory) {
       case 1: // Job
         cbetContent = {
