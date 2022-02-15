@@ -96,8 +96,7 @@ const partnersList = [
   },
   {
     name: 'Memorial Hermann',
-    link:
-      'https://cbet.blob.core.windows.net/cbetblobs/memorial-hermann-logo.jpg',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/memorial-hermann-logo.jpg',
   },
   {
     name: 'Vyaire',
@@ -157,12 +156,16 @@ const partnersList = [
   },
   {
     name: 'The McConnell Group',
-    link: 'https://cbet.blob.core.windows.net/cbetblobs/tmg.png'
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/tmg.png',
   },
   {
     name: 'Canon',
-    link: 'https://cbet.blob.core.windows.net/cbetblobs/Canon Logo.jpg'
-  }
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/Canon Logo.jpg',
+  },
+  {
+    name: 'RPI',
+    link: 'https://cbet.blob.core.windows.net/cbetblobs/RPI_Logo.png',
+  },
 ]
 
 partnersList.sort((a, b) => {
@@ -173,14 +176,8 @@ partnersList.sort((a, b) => {
 })
 
 export default function CreateEdit(props) {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setValue,
-    reset,
-    unregister,
-  } = useForm()
+  const { register, handleSubmit, errors, setValue, reset, unregister } =
+    useForm()
   const [htmlContent, setHtmlContent] = useState('') // html content for blog post
   const [cbetContentCategory, setCbetContentCategory] = useState(1) // content Category
   const [thumbnailUpload, setThumbnailUpload] = useState([]) // thumbnail image
@@ -248,7 +245,7 @@ export default function CreateEdit(props) {
           setCbetDescription(cbetContent.Description)
           setFeatured(cbetContent.Featured)
           setStatus(cbetContent.Status === true ? '1' : '0')
-          setPartnerLink(cbetContent.Thumbnail);
+          setPartnerLink(cbetContent.Thumbnail)
           setLink(cbetContent.Link)
           setPublishDate(cbetContent.StartDate)
           setCbetPartner(cbetContent.PartnerName)
@@ -338,7 +335,7 @@ export default function CreateEdit(props) {
 
   function insertCbetContent(formData) {
     let cbetContent = {}
-console
+    console
     switch (cbetContentCategory) {
       case 1: // Job
         cbetContent = {
