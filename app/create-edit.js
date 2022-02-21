@@ -335,7 +335,7 @@ export default function CreateEdit(props) {
 
   function insertCbetContent(formData) {
     let cbetContent = {}
-    console.log('Category', cbetContentCategory)
+    console.log('Category', cbetContentCategory, location)
     switch (cbetContentCategory) {
       case 1: // Job
         cbetContent = {
