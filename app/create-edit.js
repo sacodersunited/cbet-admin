@@ -249,6 +249,7 @@ export default function CreateEdit(props) {
           setLink(cbetContent.Link)
           setPublishDate(cbetContent.StartDate)
           setCbetPartner(cbetContent.PartnerName)
+          setLocation(cbetContent.Location)
           unregister('cbetDropzone')
           unregister('htmlContent')
           break
@@ -607,6 +608,16 @@ export default function CreateEdit(props) {
               {errors.title && '* Title is required'}
             </Form.Label>
           </Form.Group>
+          <Form.Group>
+            <Form.Label style={{ fontWeight: 'bold' }}>{`Location`}</Form.Label>
+            <Form.Control
+              type="text"
+              name="location"
+              onChange={handleLocation}
+              value={location}
+              ref={register}
+            ></Form.Control>
+          </Form.Group>
           <Form.Group controlId="status">
             <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
             <Form.Control
@@ -837,14 +848,19 @@ export default function CreateEdit(props) {
                 Clear
               </Button>
             </Form.Group>
-
-            <Button
-              onClick={() => {
-                console.log('errors', errors)
-              }}
+            <Form.Group
+              as={Col}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
-              Errors
-            </Button>
+              <Button
+                variant="outline-primary"
+                onClick={() => {
+                  console.log('errors', errors)
+                }}
+              >
+                Errors
+              </Button>
+            </Form.Group>
           </Form.Row>
         </Col>
 

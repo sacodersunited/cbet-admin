@@ -105,6 +105,7 @@ const App = () => {
                         <Navbar.Collapse className="justify-content-end">
                           <NavDropdown
                             title={`Signed in as ${accountInfo.account.name}`}
+                            // title="Local Dev"
                             id="basic-nav-dropdown"
                           >
                             <NavDropdown.Item onClick={logout}>
