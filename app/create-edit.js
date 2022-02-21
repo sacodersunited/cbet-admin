@@ -208,7 +208,6 @@ export default function CreateEdit(props) {
       { required: true, validate: (value) => Date.parse(value) !== isNaN }
     )
     // register({ name: 'htmlContent' }, { required: true })
-    setLocation('Unknown')
 
     // Set default dates for each date field
     const dateF = new Date()
@@ -476,12 +475,6 @@ export default function CreateEdit(props) {
 
     const CategorySelected = Number(e.target.value)
     setCbetContentCategory(CategorySelected)
-
-    if (CategorySelected !== 2) {
-      setLocation('Unknown')
-    } else {
-      setLocation('')
-    }
 
     if (CategorySelected === 1) {
       unregister('cbetDropzone')
