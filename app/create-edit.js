@@ -335,7 +335,7 @@ export default function CreateEdit(props) {
 
   function insertCbetContent(formData) {
     let cbetContent = {}
-    console
+    console.log('Category', cbetContentCategory)
     switch (cbetContentCategory) {
       case 1: // Job
         cbetContent = {
@@ -351,7 +351,7 @@ export default function CreateEdit(props) {
           Link: link, // string - Event and Job only
           StartDate: publishDate, // date
           EndDate: '12/31/2021', // date
-          Location: '', // string
+          Location: location, // string
           Tags: 'one,two', // string
           Featured: featured, // bool
           Delete: false,
